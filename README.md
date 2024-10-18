@@ -36,9 +36,9 @@ I wrote my user stories and acceptance criteria and made a GitHub Projects kanba
 
 ### Wireframes
 
-![post feed wireframe](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1728904354/feed-wireframe_otr4k8.jpg)
+![post feed wireframe](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729275225/feed-wireframe_utqhkm.jpg)
 
-My Feed wireframe shows the root page of my site. It illustrates the responsiveness of the navbar, which becomes an icon for a dropdown menu on small devices. It indicates the infinite scrolling of the posts feed, and shows that there will be a search bar and filtering options, to exclude some content from the feed or order the included content.
+My Feed wireframe shows the root page of my site. It illustrates the responsiveness of the navbar, which becomes an icon for a dropdown menu on small devices. It indicates the infinite scrolling of the posts feed, and shows that there will be a search bar, to find content that includes particular keywords.
 
 ![individual post view wireframe](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1728904354/post-wireframe_xr9arh.jpg)
 
@@ -50,9 +50,9 @@ The My Content wireframe shows that the page will display posts owned by the cur
 
 For some pages, such as the mentioned forms, I have not used up time drawing further wireframes. The known aspects of its appearance will either match the other wireframes or be standard, strongly resembling a form. The uncertain aspects will be dictated by subsequent planning, e.g., of the Post model's attributes.
 
-![Liked page wireframe](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1728904354/liked-wireframe_phh38k.jpg)
+![Liked page wireframe](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729275225/liked-wireframe_dbuzhi.jpg)
 
-My Liked page wireframe shows that it will display posts that the user has liked. Although I had drawn a dedicated 'unlike' button, liking and unliking by clicking the same thumb icon is widely expected and may suffice. Although the Liked page probably does not need Feed's range of filters, I might still insert a search bar at the top for user convenience. As noted, the possibility occurred to me of long posts here and in the main feed being only partially shown to save vertical space, but that is not core functionality.
+My Liked page wireframe shows that it will display posts that the user has liked. Although I had drawn a dedicated 'unlike' button, liking and unliking by clicking the same thumb icon is widely expected and may suffice. I might still insert a search bar at the top for user convenience, like on Feed.
 
 ![Followed and Blocked pages wireframe](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1728904354/followed-wireframe_t5eizc.jpg)
 
@@ -60,9 +60,7 @@ My Followed page/Blocked page wireframe shows that both will consist of a list o
 
 ![Profile page wireframe](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1728904353/profile-wireframe_iioghg.jpg)
 
-My Profile page outline shows that a user's name and picture will dominate the page. For that user, there should be a button for replacing the picture, like we included in Moments. For other users, it would instead be a 'follow' button. Naturally, a username appearing on a post will link to their profile.
-
-As I write this, it occurs to me that a 'posts by this user' button might also be a useful inclusion, perhaps linking to Feed and automatically putting the username in the search bar, but again, this is not core functionality, as a user could do this manually.
+My Profile page outline shows that a user's name and picture will dominate the page. For that user, there should be a button for replacing the picture, like we included in Moments. For other users, it would instead be a 'follow' button. Naturally, a username appearing on a post will link to their profile. Like with Moments, a profile could additionally display posts by that user underneath.
 
 ![Suspicious page wireframe](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1728904354/suspicious-wireframe_smsynl.jpg)
 
