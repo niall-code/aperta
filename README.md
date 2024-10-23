@@ -65,3 +65,9 @@ My Profile page outline shows that a user's name and picture will dominate the p
 ![Suspicious page wireframe](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1728904354/suspicious-wireframe_smsynl.jpg)
 
 My Suspicious page outline shows that, similar to other pages, a scrollable column of posts will be displayed. In this case, it will be posts that users have reported. I intend that this page will appear only for a superuser. As shown, buttons will be available to destroy an offending post or reinstate the post with protection from re-reporting.
+
+## Credit
+
+- My Aperta logo was created using Adobe Express' free [logo maker](https://www.adobe.com/express/create/logo).
+- The favicon and apple-touch-icon versions were produced with [Free Convert](https://www.freeconvert.com/png-to-ico) and [Resize Image](https://resizeimage.net/), respectively.
+- 
