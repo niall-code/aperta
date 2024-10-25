@@ -1,0 +1,14 @@
+.App {
+    font-family: sans-serif;
+    min-height: 100vh;
+    background-color: whitesmoke;
+}
+
+a:hover {
+    background-color: lightskyblue;
+    border-radius: 4px;
+}
+
+i {
+    padding-right: 8px;
+}
