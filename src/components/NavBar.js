@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
 
+// import { useCurrentUser } from "../contexts/CurrentUserContext";
+
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 
@@ -22,7 +24,7 @@ const loggedOutNav = <>
 
 
 const loggedInNav = <>
-    <NavLink to="/" exact className={styles.NavLink} activeClassName={styles.Active}>
+    <NavLink className={styles.NavLink} activeClassName={styles.Active}>
         <i className="fas fa-home"></i>Feed
     </NavLink>
     <NavLink>
@@ -54,11 +56,14 @@ const loggedInNav = <>
 
 
 const NavBar = () => {
+    // const currentUser = useCurrentUser();
+    // const setCurrentUser = useSetCurrentUser();
+
     return (
         <Navbar className={styles.NavBar} expand="md" fixed="top">
             <Container>
 
-                <Navbar.Brand href="/">
+                <Navbar.Brand>
                     <img src={logo} alt="logo" height="120" />
                 </Navbar.Brand>
 
