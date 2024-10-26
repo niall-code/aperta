@@ -90,9 +90,22 @@ In `NavBar.js`, I made two more JSX elements that will, once other related code 
 
 I also replaced `App.css` with `App.module.css` and have begun adding custom styles.
 
+### Enable routing between pages
+
+I ran `npm install react-router-dom` and imported NavLink from it in `NavBar.js`, then removed the dots from all appearances of `Nav.Link`, and I've begun to add attributes to those `NavLink` elements. I also needed to run `npm install @types/react-router-dom`, and correct some imports from React Bootstrap, to placate error messages.
+
+I made a `NavBar.module.css` file and put it in a `src/styles/` directory. If I was more experienced with React, I likely would have made all these extra directories at the start, knowing they would be needed. At time of commit, that CSS file has some nested styles, but this might soon be again altered.
+
+I added `<Router>` into `index.js`. Unlike during Moments, I attempted other adjustments in response to an indication that 'ReactDOM.render' was deprecated, which also entailed an update with `npm install react@18 react-dom@18`. At this time, the issue appears to have been resolved. The changes to that file will be apparent from the corresponding commit. My addressing of how to contemporarily render was largely influenced by https://react.dev/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis.
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including two new models), stylistic differences, and other miscellaneous alterations.
+
 - My Aperta logo was created using Adobe Express' free [logo maker](https://www.adobe.com/express/create/logo).
+
 - The favicon and apple-touch-icon versions were produced with [Free Convert](https://www.freeconvert.com/png-to-ico) and [Resize Image](https://resizeimage.net/), respectively.
+
+- Previously untaught changes in index.js were guided by https://react.dev/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis.
+
 - 

@@ -1,62 +1,64 @@
 import React from "react";
-import Navbar from "react-bootstrap";
-import Container from "react-bootstrap";
-import Nav from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import { NavLink } from "react-router-dom";
 
 import logo from "../assets/logo.png";
+import styles from "../styles/NavBar.module.css";
 
 
 const loggedOutNav = <>
-    <Nav.Link>
+    <NavLink>
         <i className="fas fa-home"></i>Feed
-    </Nav.Link>
-    <Nav.Link>
+    </NavLink>
+    <NavLink>
         <i className="fas fa-user-plus"></i>Sign Up
-    </Nav.Link>
-    <Nav.Link>
+    </NavLink>
+    <NavLink>
         <i className="fas fa-sign-in-alt"></i>Log In
-    </Nav.Link>
+    </NavLink>
 </>;
 
 
 const loggedInNav = <>
-    <Nav.Link>
+    <NavLink to="/" exact className={styles.NavLink} activeClassName={styles.Active}>
         <i className="fas fa-home"></i>Feed
-    </Nav.Link>
-    <Nav.Link>
+    </NavLink>
+    <NavLink>
         <i className="fas fa-home"></i>My Content
-    </Nav.Link>
-    <Nav.Link>
+    </NavLink>
+    <NavLink>
         <i className="fas fa-home"></i>Liked
-    </Nav.Link>
-    <Nav.Link>
+    </NavLink>
+    <NavLink>
         <i className="fas fa-home"></i>Followed
-    </Nav.Link>
-    <Nav.Link>
+    </NavLink>
+    <NavLink>
         <i className="fas fa-home"></i>Blocked
-    </Nav.Link>
+    </NavLink>
 
-    {isSuperuser &&
-    <Nav.Link>
+    {/* {isSuperuser &&
+    <NavLink>
         <i className="fas fa-home"></i>Suspicious
-    </Nav.Link>
-    }
+    </NavLink>
+    } */}
 
-    <Nav.Link>
+    <NavLink>
         <i className="fas fa-home"></i>Profile
-    </Nav.Link>
-    <Nav.Link>
+    </NavLink>
+    <NavLink>
         <i className="fas fa-home"></i>Log Out
-    </Nav.Link>
+    </NavLink>
 </>;
 
 
 const NavBar = () => {
     return (
-        <Navbar expand="md" fixed="top">
+        <Navbar className={styles.NavBar} expand="md" fixed="top">
             <Container>
 
-                <Navbar.Brand>
+                <Navbar.Brand href="/">
                     <img src={logo} alt="logo" height="120" />
                 </Navbar.Brand>
 
@@ -64,7 +66,7 @@ const NavBar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto text-start">
 
-                        {currentUser ? loggedInNav : loggedOutNav}
+                        {/* {currentUser ? loggedInNav : loggedOutNav} */}
 
                     </Nav>
                 </Navbar.Collapse>
