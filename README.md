@@ -106,6 +106,26 @@ So far, I have been aiming to fluidly move back and forth between making a back-
 
 I have booked my next mentor session for about a week from now and hopefully by then can be getting to the point where most of my re-creation of a Moments-like app is in place and I can start giving my attention to those aspects of my project that will set it apart from that, particularly the blocking and reporting features. In theory, if I copy-pasted all of the Moments project, I could begin that almost immediately, but I want to show that I am able to code it again for myself, and also introduce some differences where I can.
 
+### Mentor Meeting and Milestones
+
+I had a mid-project meeting with my Code Institute mentor, Gareth McGirr. He clarified the importance of grouping my user stories into milestones. Informally, I had done so naturally, since I find that my user stories for each milestone/category are next to each other in my kanban board. However, I have now made it official, with one of four milestone-titling keywords being present like a label on each user story.
+
+![milestones](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1730476903/milestones_si7l6w.png)
+![milestone grouping of user stories](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1730476902/milestone-signposts_m4ys5o.png)
+
+### Resuming the Front End
+
+Having fairly rapidly, over about a week and a half, caught up my Django REST back end's code with the functionality offered by Moments' counterpart API, I am now returning to my React app to work on associated front-end aspects. Again, I will match the capabilities of Moments as quickly as I can, hopefully leaving sufficient time to give my attention to the blocking and reporting features which I am meaning to be the distinctive section of my work. Technically, a majority of my user stories are in progress at this point, but to avoid having them all in the same column, I intend to move them to 'in progress' as I begin addressing their front-end dimensions. Accordingly, my two currently active user stories are those belonging to my Authentication milestone. The acceptance criteria of them can be seen below.
+
+![Registration and Authentication user story](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729516945/signup-login-ustory_k7on9x.png)
+![Navigation user story](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1729873579/navigation-ustory_ixrt2u.png)
+
+### Connecting to my API
+
+I created `api/axiosDefaults.js` and assigned the URL of my deployed API to `axios.defaults.baseURL`.
+
+I noticed that, despite my back end now being in place, no `loggedOutNav` links were visible in my navbar. However, I found that simply giving them a `className` remedied that.
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including two new models), stylistic differences, and other miscellaneous alterations.

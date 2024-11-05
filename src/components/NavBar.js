@@ -4,20 +4,20 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
 
-// import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 
 
 const loggedOutNav = <>
-    <NavLink>
+    <NavLink to="/" className={styles.NavLink} activeClassName={styles.Active}>
         <i className="fas fa-home"></i>Feed
     </NavLink>
-    <NavLink>
+    <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
         <i className="fas fa-user-plus"></i>Sign Up
     </NavLink>
-    <NavLink>
+    <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
         <i className="fas fa-sign-in-alt"></i>Log In
     </NavLink>
 </>;
@@ -56,7 +56,7 @@ const loggedInNav = <>
 
 
 const NavBar = () => {
-    // const currentUser = useCurrentUser();
+    const currentUser = useCurrentUser();
     // const setCurrentUser = useSetCurrentUser();
 
     return (
@@ -71,7 +71,7 @@ const NavBar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto text-start">
 
-                        {/* {currentUser ? loggedInNav : loggedOutNav} */}
+                        {currentUser ? loggedInNav : loggedOutNav}
 
                     </Nav>
                 </Navbar.Collapse>
