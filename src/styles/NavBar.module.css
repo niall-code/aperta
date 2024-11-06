@@ -6,14 +6,18 @@
     color: dimgrey;
     margin: 5px;
     padding: 10px;
+    border-radius: 10px;
     text-decoration: none;
 }
 
 .NavLink:hover {
-    background-color: lightcyan;
-    border-radius: 10px;
+    background-color: lightcyan;   
 }
 
 .NavLink i {
     padding-right: 8px;
+}
+
+.Active {
+    border: 0.5px solid lightskyblue;
 }

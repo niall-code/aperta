@@ -14,10 +14,10 @@ const loggedOutNav = <>
     <NavLink to="/" className={styles.NavLink} activeClassName={styles.Active}>
         <i class="fa-solid fa-globe"></i>Public Feed
     </NavLink>
-    <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+    <NavLink to="/signup" className={styles.NavLink} activeClassName={styles.Active}>
         <i class="fa-solid fa-user-plus"></i>Sign Up
     </NavLink>
-    <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+    <NavLink to="/login" className={styles.NavLink} activeClassName={styles.Active}>
         <i class="fa-solid fa-door-open"></i>Log In
     </NavLink>
 </>;
