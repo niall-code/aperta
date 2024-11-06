@@ -1,63 +1,53 @@
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 
-import { useCurrentUser } from "../contexts/CurrentUserContext";
-
 import logo from "../assets/logo.png";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 import styles from "../styles/NavBar.module.css";
-
-
-const loggedOutNav = <>
-    <NavLink to="/" className={styles.NavLink} activeClassName={styles.Active}>
-        <i class="fa-solid fa-globe"></i>Public Feed
-    </NavLink>
-    <NavLink to="/signup" className={styles.NavLink} activeClassName={styles.Active}>
-        <i class="fa-solid fa-user-plus"></i>Sign Up
-    </NavLink>
-    <NavLink to="/login" className={styles.NavLink} activeClassName={styles.Active}>
-        <i class="fa-solid fa-door-open"></i>Log In
-    </NavLink>
-</>;
-
-
-const loggedInNav = <>
-    <NavLink className={styles.NavLink} activeClassName={styles.Active}>
-        <i class="fa-solid fa-globe"></i>Public Feed
-    </NavLink>
-    <NavLink>
-        <i class="fa-solid fa-palette"></i>My Content
-    </NavLink>
-    <NavLink>
-        <i class="fa-solid fa-face-smile"></i>Liked
-    </NavLink>
-    <NavLink>
-        <i class="fa-solid fa-users"></i>Followed
-    </NavLink>
-    <NavLink>
-        <i class="fa-solid fa-ban"></i>Blocked
-    </NavLink>
-
-    {/* {isSuperuser &&
-    <NavLink>
-        <i className="fas fa-home"></i>Suspicious
-    </NavLink>
-    } */}
-
-    <NavLink>
-        <i class="fa-solid fa-circle-user"></i>Profile
-    </NavLink>
-    <NavLink>
-        <i class="fa-solid fa-door-closed"></i>Log Out
-    </NavLink>
-</>;
 
 
 const NavBar = () => {
     const currentUser = useCurrentUser();
-    // const setCurrentUser = useSetCurrentUser();
+
+    const loggedOutNav = <>
+        <NavLink to="/signup" className={styles.NavLink} activeClassName={styles.Active}>
+            <i class="fa-solid fa-user-plus"></i>Sign Up
+        </NavLink>
+        <NavLink to="/login" className={styles.NavLink} activeClassName={styles.Active}>
+            <i class="fa-solid fa-door-open"></i>Log In
+        </NavLink>
+    </>;
+
+    const loggedInNav = <>
+        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+            <i class="fa-solid fa-palette"></i>My Content
+        </NavLink>
+        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+            <i class="fa-solid fa-face-smile"></i>Liked
+        </NavLink>
+        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+            <i class="fa-solid fa-users"></i>Followed
+        </NavLink>
+        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+            <i class="fa-solid fa-ban"></i>Blocked
+        </NavLink>
+
+        {currentUser.is_staff &&
+            <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+                <i className="fa-solid fa-triangle-exclamation"></i>Suspicious
+            </NavLink>
+        }
+
+        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+            <i class="fa-solid fa-circle-user"></i>Profile
+        </NavLink>
+        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+            <i class="fa-solid fa-door-closed"></i>Log Out
+        </NavLink>
+    </>;
 
     return (
         <Navbar className={styles.NavBar} expand="md" fixed="top">
@@ -70,6 +60,10 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto text-start">
+
+                        <NavLink to="/" className={styles.NavLink} activeClassName={styles.Active}>
+                            <i class="fa-solid fa-globe"></i>Public Feed
+                        </NavLink>
 
                         {currentUser ? loggedInNav : loggedOutNav}
 
