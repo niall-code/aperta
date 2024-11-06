@@ -1,12 +1,19 @@
 .NavBar {
     background-color: white;
+}
 
-    a:hover {
-        background-color: lightskyblue;
-        border-radius: 4px;
-    }
+.NavLink {
+    color: dimgrey;
+    margin: 5px;
+    padding: 10px;
+    text-decoration: none;
+}
 
-    i {
-        padding-right: 8px;
-    }
+.NavLink:hover {
+    background-color: lightcyan;
+    border-radius: 10px;
+}
+
+.NavLink i {
+    padding-right: 8px;
 }

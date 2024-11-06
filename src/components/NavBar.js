@@ -12,32 +12,32 @@ import styles from "../styles/NavBar.module.css";
 
 const loggedOutNav = <>
     <NavLink to="/" className={styles.NavLink} activeClassName={styles.Active}>
-        <i className="fas fa-home"></i>Feed
+        <i class="fa-solid fa-globe"></i>Public Feed
     </NavLink>
     <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
-        <i className="fas fa-user-plus"></i>Sign Up
+        <i class="fa-solid fa-user-plus"></i>Sign Up
     </NavLink>
     <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
-        <i className="fas fa-sign-in-alt"></i>Log In
+        <i class="fa-solid fa-door-open"></i>Log In
     </NavLink>
 </>;
 
 
 const loggedInNav = <>
     <NavLink className={styles.NavLink} activeClassName={styles.Active}>
-        <i className="fas fa-home"></i>Feed
+        <i class="fa-solid fa-globe"></i>Public Feed
     </NavLink>
     <NavLink>
-        <i className="fas fa-home"></i>My Content
+        <i class="fa-solid fa-palette"></i>My Content
     </NavLink>
     <NavLink>
-        <i className="fas fa-home"></i>Liked
+        <i class="fa-solid fa-face-smile"></i>Liked
     </NavLink>
     <NavLink>
-        <i className="fas fa-home"></i>Followed
+        <i class="fa-solid fa-users"></i>Followed
     </NavLink>
     <NavLink>
-        <i className="fas fa-home"></i>Blocked
+        <i class="fa-solid fa-ban"></i>Blocked
     </NavLink>
 
     {/* {isSuperuser &&
@@ -47,10 +47,10 @@ const loggedInNav = <>
     } */}
 
     <NavLink>
-        <i className="fas fa-home"></i>Profile
+        <i class="fa-solid fa-circle-user"></i>Profile
     </NavLink>
     <NavLink>
-        <i className="fas fa-home"></i>Log Out
+        <i class="fa-solid fa-door-closed"></i>Log Out
     </NavLink>
 </>;
 
@@ -64,7 +64,7 @@ const NavBar = () => {
             <Container>
 
                 <Navbar.Brand>
-                    <img src={logo} alt="logo" height="120" />
+                    <img src={logo} alt="logo" height="100" />
                 </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

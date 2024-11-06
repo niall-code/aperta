@@ -126,6 +126,10 @@ I created `api/axiosDefaults.js` and assigned the URL of my deployed API to `axi
 
 I noticed that, despite my back end now being in place, no `loggedOutNav` links were visible in my navbar. However, I found that simply giving them a `className` remedied that.
 
+### Improve Navbar Appearance
+
+In `NavBar.module.css`, I adjusted my navbar's styles - refreshing my development server's browser tab after each edit, to assess my changes and respond immediately - and refactored from nested rulesets to separated ones, for example, from `.NavBar { a { } }` to `.NavLink { }`. I also altered the Font Awesome icons in `NavBar.js`.
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including two new models), stylistic differences, and other miscellaneous alterations.
