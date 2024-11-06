@@ -1,8 +1,10 @@
-import Container from 'react-bootstrap/Container';
+import Container from "react-bootstrap/Container";
 import { Route, Switch } from "react-router-dom";
 
-import styles from "./App.module.css";
+import "./api/axiosDefaults";
 import NavBar from "./components/NavBar";
+import SignUpForm from "./pages/auth/SignUpForm";
+import styles from "./App.module.css";
 
 
 function App() {
