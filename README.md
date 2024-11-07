@@ -166,6 +166,12 @@ I created a `SignUpForm.js` file and populated it with code similar to its count
 
 I ran `npm start` and received error messages suggesting that `is_staff` was undefined, which seemed odd as I thought I had made appropriate preparations. I inserted a question mark (i.e., `currentUser?.is_staff`) for "optional chaining", refreshed my development server's tab, and this resolved the issue.
 
+### Fix Incomplete CurrentUserContext.js File
+
+It appears that there are gaps in my code relating to passing user context to and from my API, to facilitate signing up or logging in from my React app. This somewhat makes sense as I had begun grappling with user context at the time of my "workflow transformation", as marked by a crossed-out heading that I left in the readme to imply that.
+
+I made the `CurrentUserProvider` React component in `CurrentUserContext.js` and placed its JSX element in `index.js`. Adding this will allow fetching the user context.
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including two new models), stylistic differences, and other miscellaneous alterations.
