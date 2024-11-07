@@ -128,7 +128,43 @@ I noticed that, despite my back end now being in place, no `loggedOutNav` links 
 
 ### Improve Navbar Appearance
 
-In `NavBar.module.css`, I adjusted my navbar's styles - refreshing my development server's browser tab after each edit, to assess my changes and respond immediately - and refactored from nested rulesets to separated ones, for example, from `.NavBar { a { } }` to `.NavLink { }`. I also altered the Font Awesome icons in `NavBar.js`.
+In `NavBar.module.css`, I adjusted my navbar's styles - refreshing my development server's browser tab after each edit, to assess my changes and respond immediately - and refactored from nested rulesets to separated ones, for example, from `.NavBar { a { } }` to `.NavLink { }`.
+
+I also altered the Font Awesome icons in `NavBar.js`. I chose a globe for 'Feed' and renamed it 'Public Feed', for general clarity but also to strengthen the icon association - a globe for the public/global feed. For 'Log In' and 'Log Out', I chose opening and closed doors, respectively. For 'Liked', a happy face. For 'Followed', a group of people. For 'Blocked', a no-entry symbol. I chose an artist's palette for 'My Content', because it has a strong connotation of creativity and that page will contain your created posts and allow you to create new ones. It may also subtly encourage people to treat the site as a place where they can express their creative side, which would harmonise well with the site name Aperta, or "open".
+
+### Add Container, Switch, and Route tags in App.js
+
+I found that my previous enabling of routing between component-based pages was incomplete, and remedied the situation by introducing necessary code to my `App.js` file. I now realise/remember that in a React app like this, my navbar does not directly fetch other pages like in plain HTML, but rather nudges the `Route` components in `App.js` to summon appropriate JSX elements with which to repopulate the page.
+
+### Move api directory from root into src directory
+
+I noticed that my `api` directory was in my root directory and that in Moments, its counterpart had been inside the `src` directory, so I relocated the directory and its `axiosDefaults.js` file.
+
+### Add currentUser.is_staff condition for one NavLink
+
+In [a commit to my back end](https://github.com/niall-code/aperta-api/commit/4869de613cf858bb1d81cce25e4e3d1bcafd9f63), I included Django's `is_staff` property as a field of my `CurrentUserSerializer`.
+
+Here in my front end, in `NavBar.js`, I then uncommented my draft of a conditionally-rendered NavLink to the page called 'Suspicious'. I am calling it that instead of 'Reported' because it will appear alongside 'Liked', 'Followed', and 'Blocked', each of which implies that the current user performed the actions that collected that page's contents. By contrast, the items appearing on the 'Suspicious' page will have been reported by _other_ people and are not yet confirmed as problematic - they are merely suspicious, _potentially_ problematic, on the grounds that someone else deemed them worthy of being reported.
+
+I edited the drafted conditional rendering to properly utilise the False/True value that will now be passed from my API along with its other current user information. This resembles `{currentUser.is_staff && <NavLink ... }`. Although this format looks like it should mean "something **and** something else", it really functions more like "if the first thing is false, don't show them the second thing".
+
+I originally imagined basing the condition on superuser status, but I now feel that basing it on staff status permissions is more suitable, as this is about certain content moderation powers that do not necessarily have to be wielded by a full superuser.
+
+#### Bundled with the commit
+
+In the corresponding commit, again within `NavBar.js`, I also moved my `loggedOutNav` and `loggedInNav` into the `NavBar` component. I did this because my code editor was previously warning me that `currentUser` wasn't defined, since the conditional rendering within `loggedInNav` was higher in the file than the `const currentUser = useCurrentUser();` at the top of the NavBar component. Additionally, in `SignUpForm.js`, there seemed to be many `const` declarations present inside the `SignUpForm` component but above its `return` statement, including entire methods, so I figured that it was okay to similarly include things between the opening of the NavBar component and the beginning of its return statement.
+
+I decided that it was inefficient to have the 'Public Feed' link appearing twice in my code, so I extracted both and instead placed it once above the `{currentUser ? loggedInNav : loggedOutNav}` ternary conditional. I also gave my `NavLink` components preliminary `to="#"` attributes, and selected an `fa-triangle-exclamation` Font Awesome icon for the 'Suspicious' link.
+
+These changes were included with the commit "add currentUser.is_staff condition for one NavLink" because they arose organically from enacting the commit's namesake.
+
+### Add src/ pages/auth/SignUpForm.js
+
+I created a `SignUpForm.js` file and populated it with code similar to its counterpart in Moments. I have already mentioned this file above, because I worked on it concurrently but committed it separately. The space in the path name in the commit message is not a typo; it clarifies to my eyes that "src/" already existed and "pages/auth/SignUpForm.js" were the added directories and file.
+
+### Add Optional Chaining to NavLink's Conditional Rendering
+
+I ran `npm start` and received error messages suggesting that `is_staff` was undefined, which seemed odd as I thought I had made appropriate preparations. I inserted a question mark (i.e., `currentUser?.is_staff`) for "optional chaining", refreshed my development server's tab, and this resolved the issue.
 
 ## Credit
 

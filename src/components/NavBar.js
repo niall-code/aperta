@@ -35,7 +35,7 @@ const NavBar = () => {
             <i class="fa-solid fa-ban"></i>Blocked
         </NavLink>
 
-        {currentUser.is_staff &&
+        {currentUser?.is_staff &&
             <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
                 <i className="fa-solid fa-triangle-exclamation"></i>Suspicious
             </NavLink>
