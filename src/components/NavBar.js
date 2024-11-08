@@ -5,12 +5,22 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 
 import logo from "../assets/logo.png";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import styles from "../styles/NavBar.module.css";
 
 
 const NavBar = () => {
     const currentUser = useCurrentUser();
+    const setCurrentUser = useSetCurrentUser();
+
+    const handleLogOut = async () => {
+        try {
+            await axios.post("dj-rest-auth/logout/");
+            setCurrentUser(null);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const loggedOutNav = <>
         <NavLink to="/signup" className={styles.NavLink} activeClassName={styles.Active}>
@@ -44,7 +54,7 @@ const NavBar = () => {
         <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-circle-user"></i>Profile
         </NavLink>
-        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+        <NavLink onClick={handleLogOut} className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-door-closed"></i>Log Out
         </NavLink>
     </>;
