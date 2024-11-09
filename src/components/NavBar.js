@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -54,7 +55,7 @@ const NavBar = () => {
         <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-circle-user"></i>Profile
         </NavLink>
-        <NavLink onClick={handleLogOut} className={styles.NavLink} activeClassName={styles.Active}>
+        <NavLink to="/" onClick={handleLogOut} className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-door-closed"></i>Log Out
         </NavLink>
     </>;

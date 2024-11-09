@@ -1,5 +1,5 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
@@ -8,19 +8,15 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
 
-const container = document.getElementById("root");
-const root = createRoot(container);
-
-root.render(
+ReactDOM.render(
     <React.StrictMode>
-
         <Router>
             <CurrentUserProvider>
                 <App />
             </CurrentUserProvider>
         </Router>
-
-    </React.StrictMode>
+    </React.StrictMode>,
+    document.getElementById("root")
 );
 
 

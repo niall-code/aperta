@@ -174,7 +174,11 @@ I made the `CurrentUserProvider` React component in `CurrentUserContext.js` and 
 
 ### Add styling for signup page
 
+### Fix Dependency Version Compatibility
 
+I had tried signing up and it appears to be operational. I now tried to log in and was hit by errors. I decide that I was getting tripped up by incompatibilities of dependency versions, so I did several `npm uninstall` and `npm install` commands to make my `package.json` file mirror the dependency version numbers found in my 'moments' GitHub repo. Combined with taking back my `index.js` file to its Moments-like structure from before my unnecessary changes in the early "enable routing between pages" commit, and combined with inserting an absent `to` attribute into a `NavLink` element in `NavBar.js`, logging in and logging out now seem to be working.
+
+![]()
 
 ## Credit
 
