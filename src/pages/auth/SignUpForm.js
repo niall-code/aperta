@@ -5,11 +5,9 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import { Link, useHistory } from "react-router-dom";
 
-import logo from "../../assets/logo.png"
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/SignUpLogInForm.module.css";
 import appStyles from "../../App.module.css";
@@ -44,7 +42,7 @@ const SignUpForm = () => {
 
     return (
         <Row className={styles.Row}>
-            <Col className="my-auto py-2 p-md-2" md={6}>
+            <Col className="my-auto mx-auto py-2 p-md-2" md={6}>
                 <Container className={`${appStyles.Content} p-4 `}>
 
                     <h1 className={styles.Header}>Sign Up</h1>
@@ -124,15 +122,6 @@ const SignUpForm = () => {
                     </Link>
 
                 </Container>
-            </Col>
-            <Col
-                md={6}
-                className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
-            >
-                <Image
-                    className={`${appStyles.FillerImage}`}
-                    src={logo}
-                />
             </Col>
         </Row>
     );

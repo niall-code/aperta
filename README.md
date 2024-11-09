@@ -172,6 +172,10 @@ It appears that there are gaps in my code relating to passing user context to an
 
 I made the `CurrentUserProvider` React component in `CurrentUserContext.js` and placed its JSX element in `index.js`. Adding this will allow fetching the user context.
 
+### Add styling for signup page
+
+
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including two new models), stylistic differences, and other miscellaneous alterations.
