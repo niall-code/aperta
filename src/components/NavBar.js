@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 
 import logo from "../assets/logo.png";
+import Avatar from "./Avatar";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import styles from "../styles/NavBar.module.css";
 
@@ -24,40 +25,42 @@ const NavBar = () => {
     };
 
     const loggedOutNav = <>
-        <NavLink to="/signup" className={styles.NavLink} activeClassName={styles.Active}>
+        <NavLink exact to="/signup" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-user-plus"></i>Sign Up
         </NavLink>
-        <NavLink to="/login" className={styles.NavLink} activeClassName={styles.Active}>
+        <NavLink exact to="/login" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-door-open"></i>Log In
         </NavLink>
     </>;
 
     const loggedInNav = <>
-        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+        <NavLink exact to="/my-content" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-palette"></i>My Content
         </NavLink>
-        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+        <NavLink exact to="/liked" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-face-smile"></i>Liked
         </NavLink>
-        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+        <NavLink exact to="/followed" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-users"></i>Followed
         </NavLink>
-        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+        <NavLink exact to="/blocked" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-ban"></i>Blocked
         </NavLink>
 
         {currentUser?.is_staff &&
-            <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+            <NavLink exact to="/suspicious" className={styles.NavLink} activeClassName={styles.Active}>
                 <i className="fa-solid fa-triangle-exclamation"></i>Suspicious
             </NavLink>
         }
 
-        <NavLink to="#" className={styles.NavLink} activeClassName={styles.Active}>
+        <NavLink exact to="/profile" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-circle-user"></i>Profile
         </NavLink>
-        <NavLink to="/" onClick={handleLogOut} className={styles.NavLink} activeClassName={styles.Active}>
+        <NavLink to="/" onClick={handleLogOut} className={styles.NavLink}>
             <i class="fa-solid fa-door-closed"></i>Log Out
         </NavLink>
+
+        <Avatar src={currentUser?.profile_picture} text={currentUser?.username} height={40} />
     </>;
 
     return (
@@ -72,7 +75,7 @@ const NavBar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto text-start">
 
-                        <NavLink to="/" className={styles.NavLink} activeClassName={styles.Active}>
+                        <NavLink exact to="/" className={styles.NavLink} activeClassName={styles.Active}>
                             <i class="fa-solid fa-globe"></i>Public Feed
                         </NavLink>
 
