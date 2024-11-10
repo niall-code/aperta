@@ -1,5 +1,8 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useHistory } from "react-router-dom";
+
+import { axiosReq, axiosRes } from "../api/axiosDefaults";
 
 
 export const CurrentUserContext = createContext();
@@ -10,10 +13,11 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
+    const history = useHistory();
 
     const handleMount = async () => {
         try {
-            const { data } = await axios.get("dj-rest-auth/user/");
+            const { data } = await axiosRes.get("dj-rest-auth/user/");
             setCurrentUser(data);
         } catch (err) {
             console.log(err);
@@ -23,6 +27,55 @@ export const CurrentUserProvider = ({ children }) => {
     useEffect(() => {
         handleMount();
     }, []);
+
+    useMemo(() => {
+
+        axiosReq.interceptors.request.use(
+            async (config) => {
+                try {
+                    await axios.post("/dj-rest-auth/token/refresh/");
+                } catch (err) {
+                    setCurrentUser((prevCurrentUser) => {
+                        if (prevCurrentUser) {
+                            history.push("/login");
+                        }
+                        return null;
+                    });
+                    return config;
+                }
+                return config;
+            },
+            (err) => {
+                return Promise.reject(err);
+            }
+        );
+
+        axiosRes.interceptors.response.use(
+            // If no error, simply return response
+            (response) => response,
+            async (err) => {
+                if (err.response?.status === 401) {
+                    try {
+                        // Try refreshing token
+                        await axios.post("/dj-rest-auth/token/refresh/");
+                    } catch (err) {
+                        setCurrentUser(prevCurrentUser => {
+                            if (prevCurrentUser) {
+                                // Redirect to sign-in page
+                                history.push("/login");
+                            }
+                            // Sign out
+                            return null;
+                        });
+                    }
+                    // End interceptor
+                    return axios(err.config);
+                }
+                return Promise.reject(err);
+            }
+        );
+
+    }, [history]);
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
