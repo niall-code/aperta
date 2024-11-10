@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import LogInForm from "./pages/auth/LogInForm"
 import SignUpForm from "./pages/auth/SignUpForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
+import PostPage from "./pages/posts/PostPage";
 import styles from "./App.module.css";
 
 
@@ -35,6 +36,11 @@ function App() {
                         exact
                         path="/posts/create"
                         render={() => <PostCreateForm />}
+                    />
+                    <Route
+                        exact
+                        path="/posts/:id"
+                        render={() => <PostPage />}
                     />
                     <Route
                         render={() => <p>Sorry, that page doesn't exist.</p>}
