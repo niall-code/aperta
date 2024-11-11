@@ -6,13 +6,16 @@ import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { ProfileDataProvider } from "./contexts/ProfileDataContext";
 
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
             <CurrentUserProvider>
-                <App />
+                <ProfileDataProvider>
+                    <App />
+                </ProfileDataProvider>
             </CurrentUserProvider>
         </Router>
     </React.StrictMode>,
