@@ -180,6 +180,14 @@ I had tried signing up and it appears to be operational. I now tried to log in a
 
 ![]()
 
+### Rapid-Fire Commits
+
+On the 10th of November, 2024, I pushed 8 commits to my repo, including creation of the Post, PostPage, and PostCreateForm files. With only a week remaining to complete my project, moving on to my unique block and report functionalities as soon as possible is very important. Therefore, I have opened about 20 commit pages from my 'moments' repo in separate tabs and will try to power through them, copying relevant code into Aperta with minor adjustments and closing each tab as I complete it. If I had blindly copy-pasted my whole Moments project, I could have begun focusing on the distinctive parts of my project weeks ago, but I believe reproducing my work systematically will show that I am able to and, perhaps more importantly, has allowed me to more strongly learn about how to create Django-React stack applications for beyond the end of the course. I hope to have time to edit some of my transplanted code, particularly regarding styling, but the block and report functionality must take precedence, as that is supposed to be the core of my project.
+
+At this point, the essentials of my "Registration & Authentication" and "Navigation" user stories, which constitute my "Authentication" milestone, have been put in place, so I'll move those to 'Done'. I'll move the user stories of my "Posts" and "Engagement" milestones to 'In Progress', as my planned and begun commits surge described above will encompass these.
+
+![]()
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including two new models), stylistic differences, and other miscellaneous alterations.
