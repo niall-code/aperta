@@ -8,9 +8,14 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostPage from "./pages/posts/PostPage";
 import styles from "./App.module.css";
+import PostsPage from "./pages/posts/PostsPage";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 
 function App() {
+    const currentUser = useCurrentUser();
+    const profile_id = currentUser?.profile_id || "";
+
     return (
         <div className={styles.App}>
             <NavBar />
@@ -18,9 +23,30 @@ function App() {
             <Container className={styles.Main}>
                 <Switch>
                     <Route
-                        exact
-                        path="/"
-                        render={() => <h1>Public Feed</h1>}
+                        exact path="/"
+                        render={() => (
+                            <PostsPage message="No results found. Adjust the search keyword." />
+                        )}
+                    />
+
+                    <Route
+                        exact path="/followed"
+                        render={() => (
+                            <PostsPage
+                                message="No results found. Adjust the search keyword or follow a user."
+                                filter={`owner__follows__owner__profile=${profile_id}&`}
+                            />
+                        )}
+                    />
+
+                    <Route
+                        exact path="/liked"
+                        render={() => (
+                            <PostsPage
+                                message="No results found. Adjust the search keyword or like a post."
+                                filter={`likes__owner__profile=${profile_id}&ordering=-likes__made_at&`}
+                            />
+                        )}
                     />
                     <Route
                         exact
