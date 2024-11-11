@@ -13,14 +13,14 @@ const Post = (props) => {
         id,
         owner,
         profile_id,
-        profile_image,
+        profile_picture,
         comments_count,
         likes_count,
         like_id,
         title,
-        content,
+        post_text,
         image,
-        updated_at,
+        changed_at,
         postPage,
         setPosts,
     } = props;
@@ -79,11 +79,11 @@ const Post = (props) => {
             <Card.Body>
                 <Media className="align-items-center justify-content-between">
                     <Link to={`/profiles/${profile_id}`}>
-                        <Avatar src={profile_image} height={55} />
+                        <Avatar src={profile_picture} height={55} />
                         {owner}
                     </Link>
                     <div className="d-flex align-items-center">
-                        <span>{updated_at}</span>
+                        <span>{changed_at}</span>
                         {is_owner && postPage && (
                             <MoreDropdown
                                 handleEdit={handleEdit}
@@ -98,7 +98,7 @@ const Post = (props) => {
             </Link>
             <Card.Body>
                 {title && <Card.Title className="text-center">{title}</Card.Title>}
-                {content && <Card.Text>{content}</Card.Text>}
+                {post_text && <Card.Text>{content}</Card.Text>}
                 <div className={styles.PostBar}>
                     {is_owner ? (
                         <OverlayTrigger
