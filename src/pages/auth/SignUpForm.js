@@ -11,9 +11,11 @@ import { Link, useHistory } from "react-router-dom";
 import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/SignUpLogInForm.module.css";
 import appStyles from "../../App.module.css";
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 const SignUpForm = () => {
+    useRedirect("loggedIn");
     const [signUpData, setSignUpData] = useState({
         username: "",
         password1: "",
