@@ -11,6 +11,7 @@ import styles from "./App.module.css";
 import PostsPage from "./pages/posts/PostsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PostEditForm from "./pages/posts/PostEditForm";
+import ProfilePage from "./pages/profiles/ProfilePage";
 
 
 function App() {
@@ -73,6 +74,11 @@ function App() {
                         exact
                         path="/posts/:id/edit"
                         render={() => <PostEditForm />}
+                    />
+                    <Route
+                        exact
+                        path="/profiles/:id"
+                        render={() => <ProfilePage />}
                     />
                     <Route
                         render={() => <p>Sorry, that page doesn't exist.</p>}
