@@ -9,6 +9,7 @@ import logo from "../assets/logo.png";
 import Avatar from "./Avatar";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import styles from "../styles/NavBar.module.css";
+import { removeTokenTimestamp } from "../utils/utils";
 
 
 const NavBar = () => {
@@ -19,6 +20,7 @@ const NavBar = () => {
         try {
             await axios.post("dj-rest-auth/logout/");
             setCurrentUser(null);
+            removeTokenTimestamp();
         } catch (err) {
             console.log(err);
         }
