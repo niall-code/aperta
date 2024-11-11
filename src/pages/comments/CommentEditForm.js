@@ -6,7 +6,7 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 
 function CommentEditForm(props) {
     const { id, comment_text, setShowEditForm, setComments } = props;
-    const [formContent, setFormContent] = useState(content);
+    const [formContent, setFormContent] = useState(comment_text);
 
     const handleChange = (event) => {
         setFormContent(event.target.value);
@@ -53,14 +53,14 @@ function CommentEditForm(props) {
                     onClick={() => setShowEditForm(false)}
                     type="button"
                 >
-                    cancel
+                    Cancel
                 </button>
                 <button
                     className={styles.Button}
                     disabled={!comment_text.trim()}
                     type="submit"
                 >
-                    save
+                    Save
                 </button>
             </div>
         </Form>

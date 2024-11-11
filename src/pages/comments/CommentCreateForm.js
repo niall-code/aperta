@@ -9,7 +9,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 
 function CommentCreateForm(props) {
     const { commented_on_post, setPost, setComments, profilePicture, profile_id } = props;
-    const [content, setContent] = useState("");
+    const [comment_text, setContent] = useState("");
 
     const handleChange = (event) => {
         setContent(event.target.value);

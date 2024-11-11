@@ -54,7 +54,7 @@ const Comment = (props) => {
                         <CommentEditForm
                             id={id}
                             profile_id={profile_id}
-                            content={content}
+                            comment_text={comment_text}
                             profileImage={profile_picture}
                             setComments={setComments}
                             setShowEditForm={setShowEditForm}

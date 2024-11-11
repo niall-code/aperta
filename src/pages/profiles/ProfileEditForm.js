@@ -47,12 +47,12 @@ const ProfileEditForm = () => {
         handleMount();
     }, [currentUser, history, id]);
 
-    const handleChange = (event) => {
-        setProfileData({
-            ...profileData,
-            [event.target.name]: event.target.value,
-        });
-    };
+    // const handleChange = (event) => {
+    //     setProfileData({
+    //         ...profileData,
+    //         [event.target.name]: event.target.value,
+    //     });
+    // };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
