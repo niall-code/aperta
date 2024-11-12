@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react";
-import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import Post from "./Post";
-import Asset from "../../components/Asset";
-import appStyles from "../../App.module.css";
-import styles from "../../styles/PostsPage.module.css";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router";
+
+import Post from "./Post";
 import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no-results.png";
-
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchMoreData } from "../../utils/utils";
+import Asset from "../../components/Asset";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from "../../styles/PostsPage.module.css";
+import { fetchMoreData } from "../../utils/utils";
+import appStyles from "../../App.module.css";
 
 
 function PostsPage({ message, filter = "" }) {
+
     const [posts, setPosts] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
     const [query, setQuery] = useState("");
-
     const currentUser = useCurrentUser();
 
     useEffect(() => {
@@ -45,8 +45,7 @@ function PostsPage({ message, filter = "" }) {
 
     return (
         <Row className="h-100">
-            <Col className="py-2 p-0 p-lg-2" lg={8}>
-                <p>Popular profiles mobile</p>
+            <Col className="mx-auto py-2 p-0 p-lg-2" lg={8}>
                 <i className={`fas fa-search ${styles.SearchIcon}`} />
                 <Form className={styles.SearchBar}
                     onSubmit={(event) => event.preventDefault()}>
@@ -82,10 +81,9 @@ function PostsPage({ message, filter = "" }) {
                     </Container>
                 )}
             </Col>
-            <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-                <p>Popular profiles for desktop</p>
-            </Col>
         </Row>
     );
 }
+
+
 export default PostsPage;
