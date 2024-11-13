@@ -207,7 +207,31 @@ So, I tweaked my code accordingly, summarised in my commit message as "fix misna
 
 > I had been planning to have a My Content page with the logged-in user's existing posts and a 'Create new post' button, but it now occurs to me that if I move my posts from the bottom of my profile into My Content, other users won't be able to see a collection of all of my posts, and having them in two locations is redundant. Therefore, I'll leave my posts in Profile and rename My Content to "Create Post" and make it a link to the post creation form. By happy chance, this makes the artist palette icon even more appropriate.
 
+![post and comment testing](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731515385/post_and_comment_testing_acvpg2.png)
 
+- Create a post
+
+![post with image creation test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731512120/image_post_creation_olikqu.png)
+
+- Create a comment
+
+![comment creation test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731512119/comment_creation_ayj09s.png)
+
+- Post page is mobile responsive
+
+<img src="https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731514442/post_page_mobile_wdcv0h.png" alt="post page responsiveness test" width="300px" />
+
+- Edit the post
+
+![post editing test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731512782/post_editing_test_fuz97u.png)
+
+- Edit the comment
+
+![comment editing test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731513486/comment_editing_test_pz9efp.png)
+
+- Post visible on Profile
+
+![post visible on profile](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731514990/post_visible_on_profile_wxjg0x.png)
 
 ## Credit
 
