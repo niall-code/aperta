@@ -172,13 +172,11 @@ It appears that there are gaps in my code relating to passing user context to an
 
 I made the `CurrentUserProvider` React component in `CurrentUserContext.js` and placed its JSX element in `index.js`. Adding this will allow fetching the user context.
 
-### Add styling for signup page
-
 ### Fix Dependency Version Compatibility
 
 I had tried signing up and it appears to be operational. I now tried to log in and was hit by errors. I decide that I was getting tripped up by incompatibilities of dependency versions, so I did several `npm uninstall` and `npm install` commands to make my `package.json` file mirror the dependency version numbers found in my 'moments' GitHub repo. Combined with taking back my `index.js` file to its Moments-like structure from before my unnecessary changes in the early "enable routing between pages" commit, and combined with inserting an absent `to` attribute into a `NavLink` element in `NavBar.js`, logging in and logging out now seem to be working.
 
-![]()
+![successfully logged in](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731414545/logged-in_bljzaa.png)
 
 ### Rapid-Fire Commits
 
@@ -186,7 +184,30 @@ On the 10th of November, 2024, I pushed 8 commits to my repo, including creation
 
 At this point, the essentials of my "Registration & Authentication" and "Navigation" user stories, which constitute my "Authentication" milestone, have been put in place, so I'll move those to 'Done'. I'll move the user stories of my "Posts" and "Engagement" milestones to 'In Progress', as my planned and begun commits surge described above will encompass these.
 
-![]()
+![user stories in progress](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731414362/in-progress-11-11_nk39k8.png)
+
+
+After 22 commits in one day, going a long way towards catching up to Moments' functionality, I ran `npm start` to get a sense of how broken my code was after having worked so rapidly, and was pleasantly surprised that there were no immediate screen-filling error messages, my root page being visible instead, as hoped.
+
+![successful launch of development server](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731418203/fortunate-root-page_h7utyr.png)
+
+### Fix Misnamed Variables
+
+I saw in the terminal that there were some smaller issues going on though.
+
+![terminal warnings](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731417367/terminal-no-undef_w7haxi.png)
+
+So, I tweaked my code accordingly, summarised in my commit message as "fix misnamed variables", which constituted the bulk of the problem, though eliminating some disused code also would occur.
+
+### Manual Testing
+
+![login tests](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731437865/conditional_navlink_z5xdqm.jpg)
+
+![responsiveness test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731447825/mobile_responsiveness_c0ljdv.jpg)
+
+> I had been planning to have a My Content page with the logged-in user's existing posts and a 'Create new post' button, but it now occurs to me that if I move my posts from the bottom of my profile into My Content, other users won't be able to see a collection of all of my posts, and having them in two locations is redundant. Therefore, I'll leave my posts in Profile and rename My Content to "Create Post" and make it a link to the post creation form. By happy chance, this makes the artist palette icon even more appropriate.
+
+
 
 ## Credit
 

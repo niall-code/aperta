@@ -36,8 +36,8 @@ const NavBar = () => {
     </>;
 
     const loggedInNav = <>
-        <NavLink exact to="/my-content" className={styles.NavLink} activeClassName={styles.Active}>
-            <i class="fa-solid fa-palette"></i>My Content
+        <NavLink exact to="/posts/create" className={styles.NavLink} activeClassName={styles.Active}>
+            <i class="fa-solid fa-palette"></i>Create Post
         </NavLink>
         <NavLink exact to="/liked" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-face-smile"></i>Liked

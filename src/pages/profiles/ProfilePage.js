@@ -6,7 +6,6 @@ import Asset from "../../components/Asset";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-// import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -32,6 +31,7 @@ function ProfilePage() {
     const { pageProfile } = useProfileData();
     const [profile] = pageProfile.results;
     const is_owner = currentUser?.username === profile?.owner;
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -52,9 +52,9 @@ function ProfilePage() {
         };
         fetchData();
     }, [id, setProfileData]);
+
     const mainProfile = (
         <>
-            {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
             <Row noGutters className="px-3 text-center">
                 <Col lg={3} className="text-lg-left">
                     <Image
@@ -65,18 +65,19 @@ function ProfilePage() {
                 </Col>
                 <Col lg={6}>
                     <h3 className="m-2">{profile?.owner}</h3>
+
                     <Row className="justify-content-center no-gutters">
                         <Col xs={3} className="my-2">
+                            <div>Posts</div>
                             <div>{profile?.posts_count}</div>
-                            <div>posts</div>
                         </Col>
                         <Col xs={3} className="my-2">
+                            <div>Followers</div>
                             <div>{profile?.followers_count}</div>
-                            <div>followers</div>
                         </Col>
                         <Col xs={3} className="my-2">
-                            <div>{profile?.following_count}</div>
-                            <div>following</div>
+                            <div>Followed</div>
+                            <div>{profile?.follows_count}</div>
                         </Col>
                     </Row>
                 </Col>
@@ -97,12 +98,14 @@ function ProfilePage() {
                             >
                                 Follow
                             </Button>
-                        ))}
+                        ))
+                    }
+                    {is_owner && <ProfileEditDropdown id={profile?.id} />}
                 </Col>
-                {/* {profile?.content && <Col className="p-3">{profile.content}</Col>} */}
             </Row>
         </>
     );
+
     const mainProfilePosts = (
         <>
             <hr />
@@ -126,10 +129,10 @@ function ProfilePage() {
             )}
         </>
     );
+
     return (
         <Row>
-            <Col className="py-2 p-0 p-lg-2" lg={8}>
-                {/* <PopularProfiles mobile /> */}
+            <Col className="mx-auto py-2 p-0 p-lg-2" lg={8}>
                 <Container className={appStyles.Content}>
                     {hasLoaded ? (
                         <>
@@ -141,10 +144,9 @@ function ProfilePage() {
                     )}
                 </Container>
             </Col>
-            {/* <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-                <PopularProfiles />
-            </Col> */}
         </Row>
     );
 }
+
+
 export default ProfilePage;
