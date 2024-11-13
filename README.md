@@ -211,7 +211,7 @@ So, I tweaked my code accordingly, summarised in my commit message as "fix misna
 
 - Create a post
 
-![post with image creation test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731512120/image_post_creation_olikqu.png)
+![post creation test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731517242/image_post_creation_wc0dzi.png)
 
 - Create a comment
 
