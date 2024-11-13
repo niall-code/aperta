@@ -233,6 +233,14 @@ So, I tweaked my code accordingly, summarised in my commit message as "fix misna
 
 ![post visible on profile](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731514990/post_visible_on_profile_wxjg0x.png)
 
+### Fix handleLike method of Post component
+
+While trying to manually test my liking/unliking functionality, I was running into 400 errors in the console. After much experimentation, I determined that the issue was merely one occasion of an absence of `liked_` in front of `post`. In my back end, I had tried to give things more clear, descriptive names than had been the case in Moments. Mostly, this has been fine, but my 'speedrun' of commits the other day possibly led to me missing this discrepancy at first.
+
+![fix of handleLike method](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731531755/liked_post_c3bwrf.png)
+
+Now that the change has been made, my liking and unliking pass my manual test too.
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including two new models), stylistic differences, and other miscellaneous alterations.
