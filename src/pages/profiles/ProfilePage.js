@@ -32,6 +32,8 @@ function ProfilePage() {
     const [profile] = pageProfile.results;
     const is_owner = currentUser?.username === profile?.owner;
 
+    console.log('PROFILE PAGE: ', profile)
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -84,7 +86,7 @@ function ProfilePage() {
                 <Col lg={3} className="text-lg-right">
                     {currentUser &&
                         !is_owner &&
-                        (profile?.follows_id ? (
+                        (profile?.follow_id ? (
                             <Button
                                 className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
                                 onClick={() => handleUnfollow(profile)}

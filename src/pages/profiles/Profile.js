@@ -10,7 +10,7 @@ import { useSetProfileData } from "../../contexts/ProfileDataContext";
 
 const Profile = (props) => {
     const { profile, mobile, imageSize = 55 } = props;
-    const { id, follows_id, profile_picture, owner } = profile;
+    const { id, followers_id, profile_picture, owner } = profile;
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
     const { handleFollow, handleUnfollow } = useSetProfileData();
@@ -31,7 +31,7 @@ const Profile = (props) => {
                 {!mobile &&
                     currentUser &&
                     !is_owner &&
-                    (follows_id ? (
+                    (followers_id ? (
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
                             onClick={() => handleUnfollow(profile)}

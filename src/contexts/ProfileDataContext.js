@@ -18,19 +18,13 @@ export const ProfileDataProvider = ({ children }) => {
 
     const handleFollow = async (clickedProfile) => {
         try {
-            const { data } = await axiosRes.post("/followers/", {
-                followed: clickedProfile.id,
+            const { data } = await axiosRes.post("/followed/", {
+                followed_creator: clickedProfile.id,
             });
             setProfileData((prevState) => ({
                 ...prevState,
                 pageProfile: {
                     results: prevState.pageProfile.results.map((profile) =>
-                        followHelper(profile, clickedProfile, data.id)
-                    ),
-                },
-                popularProfiles: {
-                    ...prevState.popularProfiles,
-                    results: prevState.popularProfiles.results.map((profile) =>
                         followHelper(profile, clickedProfile, data.id)
                     ),
                 },
@@ -41,18 +35,13 @@ export const ProfileDataProvider = ({ children }) => {
     };
 
     const handleUnfollow = async (clickedProfile) => {
+        console.log('CLICKED PROFILE: ', clickedProfile)
         try {
-            await axiosRes.delete(`/followers/${clickedProfile.following_id}/`);
+            await axiosRes.delete(`/followed/${clickedProfile.follow_id}/`);
             setProfileData((prevState) => ({
                 ...prevState,
                 pageProfile: {
                     results: prevState.pageProfile.results.map((profile) =>
-                        unfollowHelper(profile, clickedProfile)
-                    ),
-                },
-                popularProfiles: {
-                    ...prevState.popularProfiles,
-                    results: prevState.popularProfiles.results.map((profile) =>
                         unfollowHelper(profile, clickedProfile)
                     ),
                 },
@@ -61,22 +50,6 @@ export const ProfileDataProvider = ({ children }) => {
             console.log(err);
         }
     };
-    // useEffect(() => {
-    //     const handleMount = async () => {
-    //         try {
-    //             const { data } = await axiosReq.get(
-    //                 "/profiles/?ordering=-followers_count"
-    //             );
-    //             setProfileData((prevState) => ({
-    //                 ...prevState,
-    //                 popularProfiles: data,
-    //             }));
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     };
-    //     handleMount();
-    // }, [currentUser]);
     
     return (
         <ProfileDataContext.Provider value={profileData}>
