@@ -241,6 +241,14 @@ While trying to manually test my liking/unliking functionality, I was running in
 
 Now that the change has been made, my liking and unliking pass my manual test too.
 
+### The 'Liked' page
+
+At first, irrespective of whether a post was liked or not, it appeared on my 'Liked' page. I went back to my API, pip-installed `django-filter`, and added `filterset_fields` into views files. I had previously omitted this because I thought I didn't need it for Aperta's 'Public Feed' page, but I realised that it was still required for this other use. This solved the problem.
+
+### Following/unfollowing and the 'Followed' page
+
+I made some small adjustments, 
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including two new models), stylistic differences, and other miscellaneous alterations.
