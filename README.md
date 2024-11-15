@@ -96,7 +96,7 @@ I ran `npm install react-router-dom` and imported NavLink from it in `NavBar.js`
 
 I made a `NavBar.module.css` file and put it in a `src/styles/` directory. If I was more experienced with React, I likely would have made all these extra directories at the start, knowing they would be needed. At time of commit, that CSS file has some nested styles, but this might soon be again altered.
 
-I added `<Router>` into `index.js`. Unlike during Moments, I attempted other adjustments in response to an indication that 'ReactDOM.render' was deprecated, which also entailed an update with `npm install react@18 react-dom@18`. At this time, the issue appears to have been resolved. The changes to that file will be apparent from the corresponding commit. My addressing of how to contemporarily render was largely influenced by https://react.dev/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis.
+I added `<Router>` into `index.js`. Unlike during Moments, I attempted other adjustments in response to an indication that 'ReactDOM.render' was deprecated, which also entailed an update with `npm install react@18 react-dom@18`. At this time, the issue appears to have been resolved. The changes to that file will be apparent from the corresponding commit. My addressing of how to contemporarily render was largely influenced by https://react.dev/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis. (I believe I later reverted those changes, so I'll remove the second mention of this from Credits.)
 
 ### ~~Provide user context~~
 
@@ -147,8 +147,6 @@ In [a commit to my back end](https://github.com/niall-code/aperta-api/commit/486
 Here in my front end, in `NavBar.js`, I then uncommented my draft of a conditionally-rendered NavLink to the page called 'Suspicious'. I am calling it that instead of 'Reported' because it will appear alongside 'Liked', 'Followed', and 'Blocked', each of which implies that the current user performed the actions that collected that page's contents. By contrast, the items appearing on the 'Suspicious' page will have been reported by _other_ people and are not yet confirmed as problematic - they are merely suspicious, _potentially_ problematic, on the grounds that someone else deemed them worthy of being reported.
 
 I edited the drafted conditional rendering to properly utilise the False/True value that will now be passed from my API along with its other current user information. This resembles `{currentUser.is_staff && <NavLink ... }`. Although this format looks like it should mean "something **and** something else", it really functions more like "if the first thing is false, don't show them the second thing".
-
-I originally imagined basing the condition on superuser status, but I now feel that basing it on staff status permissions is more suitable, as this is about certain content moderation powers that do not necessarily have to be wielded by a full superuser.
 
 #### Bundled with the commit
 
@@ -247,16 +245,52 @@ At first, irrespective of whether a post was liked or not, it appeared on my 'Li
 
 ### Following/unfollowing and the 'Followed' page
 
-I made some small adjustments, 
+To enable my following functionality, in `ProfileDataContext.js`'s `handleFollow` method, I changed `"/followers/"` to `"/followed/"` at about line 21, better matching the URL patterns of my API, and changed `followed` to `followed_creator` at about line 22, better matching the corresponding field of my API's Follow model.
+
+![fixing handleFollow method](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731678498/handleFollow_zfegr8.png)
+
+Issues remained with my unfollowing functionality though. After trying by myself, I consulted a Code Institite tutor, Rebecca. We enabled unfollowing by changing `following_id` to `follow_id` in the `handleUnfollow` method, and `follows_id` also to `follow_id` at about line 89 of `ProfilePage.js`.
+
+Issues still remained with the 'Followed' page. At first, all posts appeared there regardless of whether or not the creator was followed. After an attempt to fix it, then no posts would appear, the opposite problem. In consultation with another Code Institute tutor, Holly, I made a few trial-and-error changes on the back end (which I'll also mention in the other readme) and here tweaked `App.js` in about line 43, similarly from `__follows__` to `__followers__`. It seems the similarity and potential ambiguity of the terms follow/follows/followed/following has been a stumbling block, despite my previous conversation with Sarah (mentioned in the other readme), but the matter has now been resolved. I maybe earlier mistook, for example, `follows_id` for being a related name with ID appended, rather than being a `follow_id` field in its own right, so I'm a little clearer now on how it works, at least.
+
+**Although I at one point conceived of having the 'Followed' page be simply a list of who you followed, I have ended up instead making it a page where posts by those followed creators are displayed.**
+
+### Deployment to Heroku
+
+From my Heroku dashboard, I clicked 'New', 'Create new app', named it _aperta_ and selected Europe, then 'Create app', 'Connect to GitHub', connected my repo, and 'Deploy Branch'.
+
+![naming the app](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731675636/deploy_1_name_pe4utu.png)
+
+![connecting the repository](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731675636/deploy_2_connect_awyjw9.png)
+
+![successfully deployed](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731675636/deploy_3_view_cnmkyj.png)
+
+Then, I changed my _aperta-api_ app's CLIENT_ORIGIN config var to the URL of my production front end.
+
+![live production front end](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731675636/deploy_4_live_orwh0j.png)
+
+### Priority and future-release functionalities
+
+With less than 4 days remaining to complete my project, I must scale back my perhaps over-ambitious plans for the first release. The reporting of posts and the moderator capacity to delete or approve those suspicious posts is the most important aspect of my imagined distinct-from-Moments features and therefore will be my priority. Blocking other users is a good idea also but out of the two is more deserving of being relegated to a future release. I'll have to make a "won't do" column for it in my kanbann board. Simiarly, reporting posts is more essential than reporting comments. Therefore, I've tweaked my Report model (over in my API) to focus on that for this release and re-migrated it.
+
+The user stories currently in my In Progress column must be approximately done now, so I'll shift them all to Done, move the reporting-relevant user story/ies to In Progress, and the blocking user story to a new column as said.
+
+I'd originally been going to put a screenshot of each user story's acceptance criteria in this readme while it was still active, but the shortness of time and the realities of the fluid way I have felt I needed to work - moving organically between different or overlapping features - has meant that it hasn't quite happened like that. To partly make up for it, when my project is almost in a submittable state, I'll make a chart breaking down my milestones, u-stories, and acceptance criteria, retrospectively confirming their fulfilment or explaining their non-fulfilment (similar to the little manual testing charts higher up). I have of course been less formally thinking about the criteria though.
+
+![rearranged kanban board](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731683382/kanban_15_11_xfomwm.png)
+
+![Reporting Posts user story](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731683569/reporting_ustory_uozoad.png)
+
+![moderating posts user story](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731683682/moderating_ustory_hw8lcz.png)
 
 ## Credit
 
-- My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including two new models), stylistic differences, and other miscellaneous alterations.
+- My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time.
 
 - My Aperta logo was created using Adobe Express' free [logo maker](https://www.adobe.com/express/create/logo).
 
 - The favicon and apple-touch-icon versions were produced with [Free Convert](https://www.freeconvert.com/png-to-ico) and [Resize Image](https://resizeimage.net/), respectively.
 
-- Previously untaught changes in index.js were guided by https://react.dev/blog/2022/03/08/react-18-upgrade-guide#updates-to-client-rendering-apis.
+- My Code Institute mentor, Gareth McGirr, suggested the convenient inclusion of the 'reported' attribute in my API's Post model, and provided general support with clarifying my ideas and priorities for the project.
 
-- 
+- Code Institute tutors Rebecca and Holly assisted with fixing problems with my `handleUnfollow` method and with post filtering for my 'Followed' page, as described above.
