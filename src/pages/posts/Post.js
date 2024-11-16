@@ -9,7 +9,6 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
-import Button from "react-bootstrap/Button";
 
 
 const Post = (props) => {
@@ -32,10 +31,6 @@ const Post = (props) => {
     const is_owner = currentUser?.username === owner;
 
     const history = useHistory();
-
-    const handleReport = () => {
-        history.push(`/posts/${id}/report`);
-    };
 
     const handleEdit = () => {
         history.push(`/posts/${id}/edit`);
@@ -107,17 +102,6 @@ const Post = (props) => {
             <Card.Body>
                 {title && <Card.Title className="text-center">{title}</Card.Title>}
                 {post_text && <Card.Text>{post_text}</Card.Text>}
-
-                {currentUser &&
-                    <Button
-                        variant="danger"
-                        size="sm"
-                        onClick={handleReport}
-                    >
-                        Report
-                    </Button>
-                }
-
                 <div className={styles.PostBar}>
                     {is_owner ? (
                         <OverlayTrigger
