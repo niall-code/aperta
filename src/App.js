@@ -71,7 +71,7 @@ function App() {
                     />
                     <Route
                         exact
-                        path="/posts/:id"
+                        path="/posts/:id/"
                         render={() => <PostPage />}
                     />
                     <Route

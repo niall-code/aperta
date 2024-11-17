@@ -14,6 +14,7 @@ import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 
 
+
 function PostPage() {
     const { id } = useParams();
     const [post, setPost] = useState({ results: [] });
@@ -26,9 +27,10 @@ function PostPage() {
         const handleMount = async () => {
             try {
                 const [{ data: post }, { data: comments }] = await Promise.all([
-                    axiosReq.get(`/posts/${id}`),
-                    axiosReq.get(`/comments/?post=${id}`),
+                    axiosReq.get(`/posts/${id}/`),
+                    axiosReq.get(`/comments/?commented_on_post=${id}`)
                 ]);
+                console.log("post in handle mount: ",post)
                 setPost({ results: [post] });
                 setComments(comments);
             } catch (err) {
@@ -36,6 +38,7 @@ function PostPage() {
             }
         };
         handleMount();
+        // console.log("post = ",post)
     }, [id]);
 
     return (
