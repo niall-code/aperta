@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import LogInForm from "./pages/auth/LogInForm"
 import SignUpForm from "./pages/auth/SignUpForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
+import ReportCreateForm from "./pages/reports/ReportCreateForm";
 import PostPage from "./pages/posts/PostPage";
 import styles from "./App.module.css";
 import PostsPage from "./pages/posts/PostsPage";
@@ -81,6 +82,11 @@ function App() {
                     />
                     <Route
                         exact
+                        path="/report/:id"
+                        render={() => <ReportCreateForm />}
+                    />
+                    <Route
+                        exact
                         path="/profiles/:id"
                         render={() => <ProfilePage />}
                     />
@@ -99,6 +105,7 @@ function App() {
                         path="/profiles/:id/edit"
                         render={() => <ProfileEditForm />}
                     />
+
                     <Route render={() => <NotFound />} />
                 </Switch>
             </Container>

@@ -283,6 +283,12 @@ I'd originally been going to put a screenshot of each user story's acceptance cr
 
 ![moderating posts user story](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731683682/moderating_ustory_hw8lcz.png)
 
+
+### 
+
+- Took the dots out
+- FormControl as select
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time.

@@ -140,7 +140,7 @@ const Post = (props) => {
 
                 <div>
                     {currentUser &&
-                        <Link to="/report">
+                        <Link to={`/report/${id}`}>
                             <Button
                                 variant="danger"
                                 size="sm"
