@@ -9,6 +9,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import Button from "react-bootstrap/Button";
 
 
 const Post = (props) => {
@@ -77,6 +78,10 @@ const Post = (props) => {
         }
     };
 
+    // const handleReport = async () => {
+    //     history.push(`/report/${id}`);
+    // };
+
     return (
         <Card className={styles.Post}>
             <Card.Body>
@@ -97,7 +102,7 @@ const Post = (props) => {
                 </Media>
             </Card.Body>
             <Link to={`/posts/${id}`}>
-                <Card.Img src={image} alt={title} />
+                {image && <Card.Img src={image} alt={title} />}
             </Link>
             <Card.Body>
                 {title && <Card.Title className="text-center">{title}</Card.Title>}
@@ -132,6 +137,20 @@ const Post = (props) => {
                     </Link>
                     {comments_count}
                 </div>
+
+                <div>
+                    {currentUser &&
+                        <Link to="/report">
+                            <Button
+                                variant="danger"
+                                size="sm"
+                            >
+                                Report
+                            </Button>
+                        </Link>
+                    }
+                </div>
+
             </Card.Body>
         </Card>
     );
