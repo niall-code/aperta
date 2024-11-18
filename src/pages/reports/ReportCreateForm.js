@@ -49,24 +49,24 @@ function ReportCreateForm() {
             try {
                 const {data} = await axiosReq.get(`/posts/${id}`);
                 console.log(data);
-                const post_id = `${data.id}`;
+                const post_id = parseInt(`${data.id}`);
                 console.log(post_id);
                 const post_title = `${data.title}`;
                 console.log(post_title);
                 const post_text = `${data.post_text}`;
                 console.log(post_text);
-                const post_image = `${data.image}`;
+                const post_image = `${data.image.url}`;
                 console.log(post_image);
 
-                setReportData({
+                setReportData((reportData) => ({
                     ...reportData,
                     post_id: post_id,
                     post_title: post_title,
                     post_text: post_text,
                     post_image: post_image,
-                    reason: "",
+                    reason: 0,
                     explanation: "",
-                });
+                }));
 
                 // return data;
             } catch (err) {
@@ -82,10 +82,26 @@ function ReportCreateForm() {
 
     const handleChange = (event) => {
 
-        setReportData({
-            ...reportData,
-            [event.target.name]: event.target.value,
-        });
+        if (event.target.name==='reason') {
+
+            const numReason = parseInt(event.target.value);
+
+            setReportData((reportData) => ({
+                ...reportData,
+                [event.target.name]: numReason,
+
+            }))
+
+        } else if (event.target.name==='explanation') {
+
+            setReportData((reportData) => ({
+                ...reportData,
+                [event.target.name]: event.target.value,
+
+            }))
+
+        }
+
     };
 
     const handleSubmit = async (event) => {
@@ -93,12 +109,14 @@ function ReportCreateForm() {
 
         // const formData = new FormData();
 
-        // formData.append("post_id", post_id);
-        // formData.append("post_text", post_text);
-        // formData.append("post_title", post_title);
-        // formData.append("post_image", post_image);
-        // formData.append("reason", reason);
-        // formData.append("explanation", explanation);
+        // formData.append("post_id", reportData.post_id);
+        // formData.append("post_title", reportData.post_title);
+        // formData.append("post_text", reportData.post_text);
+        // formData.append("post_image", reportData.post_image);
+        // formData.append("reason", reportData.reason);
+        // formData.append("explanation", reportData.explanation);
+
+        console.log("Data being sent to the server:", reportData);
 
         try {
 
@@ -129,19 +147,19 @@ function ReportCreateForm() {
                     as="select"
                     aria-label="Select reason for reporting"
                     name="reason"
-                    // value={reason}
+                    value={reportData.reason}
                     onChange={handleChange}
                 >
-                    <option>Select reason for reporting</option>
-                    <option name="reason" value="1">Graphic violence</option>
-                    <option name="reason" value="2">Explicit sexual content</option>
-                    <option name="reason" value="3">Sexualization of minors</option>
-                    <option name="reason" value="4">Inciting hatred</option>
-                    <option name="reason" value="5">Encouraging suicide or self-harm</option>
-                    <option name="reason" value="6">Attempting to defraud</option>
-                    <option name="reason" value="7">Advertising illegal products</option>
-                    <option name="reason" value="8">Blatant copyright infringement</option>
-                    <option name="reason" value="9">
+                    <option value="0" disabled>Please select a reason</option>
+                    <option value="1">Graphic violence</option>
+                    <option value="2">Explicit sexual content</option>
+                    <option value="3">Sexualization of minors</option>
+                    <option value="4">Inciting hatred</option>
+                    <option value="5">Encouraging suicide or self-harm</option>
+                    <option value="6">Attempting to defraud</option>
+                    <option value="7">Advertising illegal products</option>
+                    <option value="8">Blatant copyright infringement</option>
+                    <option value="9">
                         Other serious reason - please describe in 'Explanation'
                     </option>
                 </FormControl>
@@ -162,7 +180,7 @@ function ReportCreateForm() {
                     as="textarea"
                     rows={4}
                     name="explanation"
-                    // value={explanation}
+                    value={reportData.explanation}
                     onChange={handleChange}
                 />
 
