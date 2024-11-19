@@ -283,11 +283,63 @@ I'd originally been going to put a screenshot of each user story's acceptance cr
 
 ![moderating posts user story](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731683682/moderating_ustory_hw8lcz.png)
 
+### Revert "add 'Report' button to Post.js"
 
-### 
+In my back-end readme, there are two occasions where I record having used `git revert` commands (five on the first occasion, two on the second). At the same time as the first occasion, I did one such command here as well, though similar code to that which was undone would later be re-added. The circumstances are discussed extensively in my other readme, since it primarily concerned my back end.
 
-- Took the dots out
-- FormControl as select
+### Change request in PostPage's useEffect
+
+A problem was discovered relating to posts in my "public feed" post list not being viewable when you go into the post detail. In short, that is what had prompted those reversion commands, to get back to what I believed to be the last stable version. Unfortunately, problems persisted even then. I consulted a Code Institute tutor, Roman. We did a few things, already talked about in the other readme, but the one we changed here in the front end was adjusting `PostPage.js` like this:
+
+![amended get request](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732032499/roman_postpage_pjuq8r.png)
+
+### Add 'Report' link button to Post.js
+
+I then again added a 'Report' button into `Post.js`, but this time wrapped in a link, rather than going unnecessarily via a `handleReport` method.
+
+### Add ReportCreateForm.js
+
+I populated `ReportCreateForm.js` with a draft of the code it would demand, and added a route into `App.js`. As can be seen from my repository, at that point in time, there were many console log statements and commented-out lines of code in that file, as I had fiddled with it for quite a while before settling on an iteration that felt worth committing, perhaps deterred by my then-recent git reversion fiasco from committing it in smaller chunks, like I maybe otherwise would have.
+
+Two breakthroughs, small in appearance but large in effect, that probably persuaded me to make the commit were the changing of `<Form.Select` to `<FormControl as="select"` and the removal of dots from between all uses of `FormControl`, `FormGroup` and `FormLabel` (as opposed to `Form.Control`).
+
+The contents of my `handleMount` method in that commit reflect that I had added four fields starting with the characters "post_" to my API's Report model about an hour before, grouped into a back-end commit titled "add perform_create method", which at the time seemed the headline of the commit. (It turned out the namesake method would get removed, and the new fields' importance would become more certain.)
+
+### Alter CreateReportForm (sic) to eliminate 400 error
+
+After removing a 404 error, as described in the other readme, a 400 error remained. It was resolved by a combination of the commit "alter model fields for Report" on the back end and here the almost aptly named commit "alter CreateReportForm to eliminate 400 error". Having battled my coding conundrum literally all day, when I finally fixed it, I tiredly mistyped the commit message as 'CreateReportForm' instead of the more acccurate 'ReportCreateForm'.
+
+Subjectively, it already feels a long time ago, even though my repository says it was 19 hours ago, but it looks like my changes here were:
+
+- adding `parseInt` at about line 52
+
+- `.url` after 'image' at about line 58
+
+- expanding the `handleChange` method to add logic that uses `parseInt` when necessary
+
+- adding `reportData.` before 'reason' and 'explanation' at about lines 150 and 183
+
+- removing unneccessary name attributes of option elements
+
+- and adding attributes of `value="0" disabled` to the first, instruction-only option element.
+
+### Add optional chaining in ReportCreateForm's handleMount method
+
+I'd gotten a HTTP 400 (Bad Request) error in the devtools console of my development server when trying to submit a report creation form. Although surprised to see it, as I appeared to have already fixed that last night, the small number of changes since then narrows down what could be wrong:
+
+- I have made a single-word change on the back end, from 'PUT' to 'PATCH' in part of the permissions file. I don't think that should be relevant right now, but I'll try reintroducing 'PUT' if I cannot find any other culprit.
+
+- I had made a single-line addition here in my `handleSubmit` method of the `ReportCreateForm.js` page, but had not yet committed it (as that was what I meaning to first test) and I've now commented it out, so it shouldn't be that.
+
+- That is all of the changes, but just now I was trying to report a post that had neither an image or text, so I'm feeling that this is the most probable cause. I inspected devtools and saw this console message:
+
+<img src="https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732028186/properties_of_null_pfsq8p.png" alt="console message about image URL" width="400px" />
+
+I therefore decided to amend line 58 to ``const post_image = `${data.image?.url}`;``, basically inserting the question mark, i.e., using optional chaining. This indeed solved the problem, as that post now has been reported just fine:
+
+![successful report of post without image](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732029105/null_url_avoided_lc4oib.png)
+
+I have also added a `default` attribute to the file's first, instructional-only option element, so that it shows up in the dropdown bar instead of "Graphic violence".
 
 ## Credit
 

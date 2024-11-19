@@ -55,7 +55,7 @@ function ReportCreateForm() {
                 console.log(post_title);
                 const post_text = `${data.post_text}`;
                 console.log(post_text);
-                const post_image = `${data.image.url}`;
+                const post_image = `${data.image?.url}`;
                 console.log(post_image);
 
                 setReportData((reportData) => ({
@@ -121,6 +121,9 @@ function ReportCreateForm() {
         try {
 
             await axiosReq.post("/suspicious/", reportData);
+
+            // await axiosReq.patch(`/posts/${reportData.post_id}/`, { reported: true });
+
             history.push(`/`);
 
         } catch (err) {
@@ -150,7 +153,7 @@ function ReportCreateForm() {
                     value={reportData.reason}
                     onChange={handleChange}
                 >
-                    <option value="0" disabled>Please select a reason</option>
+                    <option value="0" default disabled>Please select a reason</option>
                     <option value="1">Graphic violence</option>
                     <option value="2">Explicit sexual content</option>
                     <option value="3">Sexualization of minors</option>
