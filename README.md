@@ -341,6 +341,24 @@ I therefore decided to amend line 58 to ``const post_image = `${data.image?.url}
 
 I have also added a `default` attribute to the file's first, instructional-only option element, so that it shows up in the dropdown bar instead of "Graphic violence".
 
+### Add patch of Boolean field to report functionality
+
+I uncommented and tested line 125 of `ReportCreateForm.js`, the second axios request of the try block.
+
+    try {
+
+        await axiosReq.post("/suspicious/", reportData);
+
+        await axiosReq.patch(`/posts/${reportData.post_id}/`, {reported: true});
+
+        history.push(`/`);
+
+    }
+
+It worked, as shown below.
+
+![Boolean field change test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732043060/reported_boolean_changed_alapdz.png)
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time.

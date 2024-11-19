@@ -122,7 +122,7 @@ function ReportCreateForm() {
 
             await axiosReq.post("/suspicious/", reportData);
 
-            // await axiosReq.patch(`/posts/${reportData.post_id}/`, { reported: true });
+            await axiosReq.patch(`/posts/${reportData.post_id}/`, {reported: true});
 
             history.push(`/`);
 
