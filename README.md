@@ -359,6 +359,10 @@ It worked, as shown below.
 
 ![Boolean field change test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732043060/reported_boolean_changed_alapdz.png)
 
+### Reported posts not in Public Feed
+
+Having just committed "add reported=False filter to PostList queryset" on the back end and redeployed my API, I came here to confirm its success. It appears to indeed have worked for here in my front end too, post #5 being absent from the public feed but still existing if I append `/posts/5` to the URL.
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time.
