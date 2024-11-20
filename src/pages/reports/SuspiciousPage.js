@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { axiosReq } from "../../api/axiosDefaults";
 import logo from "../../assets/logo.png";
+import ReasonReader from "../../components/ReasonReader";
 
 
 function SuspiciousPage() {
@@ -29,7 +30,11 @@ function SuspiciousPage() {
                     <table>
                         <tr>
                             <th>Reason</th>
-                            <td>{reports.results[0].reason}</td>
+                            <td>
+                                <ReasonReader
+                                    reasonNum={reports.results[0].reason}
+                                />
+                            </td>
                         </tr>
                         <tr>
                             <th>Explanation</th>
