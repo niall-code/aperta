@@ -1,0 +1,21 @@
+#reported-post {
+    display: flex;
+}
+
+#r-post-text-fields {
+    flex: 3;
+}
+
+#r-post-image {
+    max-width: 400px;
+}
+
+#sus-count {
+    color: dimgray;
+}
+
+@media (max-width: 600px) {
+    #reported-post {
+        flex-direction: column;
+    }
+}
