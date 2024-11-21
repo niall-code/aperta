@@ -55,7 +55,7 @@ function ReportCreateForm() {
                 console.log(post_title);
                 const post_text = `${data.post_text}`;
                 console.log(post_text);
-                const post_image = `${data.image?.url}`;
+                const post_image = `${data.image}`;
                 console.log(post_image);
 
                 setReportData((reportData) => ({
