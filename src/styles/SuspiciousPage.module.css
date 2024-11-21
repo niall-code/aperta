@@ -1,4 +1,9 @@
-#reported-post {
+.Card {
+    margin: 5px;
+    padding: 5px;
+}
+
+.reported-post {
     display: flex;
 }
 
@@ -10,8 +15,10 @@
     max-width: 400px;
 }
 
-#sus-count {
+.SusCount {
+    border: none;
     color: dimgray;
+    text-align: center;
 }
 
 @media (max-width: 600px) {
