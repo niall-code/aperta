@@ -45,9 +45,9 @@ const NavBar = () => {
         <NavLink exact to="/followed" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-users"></i>Followed
         </NavLink>
-        <NavLink exact to="/blocked" className={styles.NavLink} activeClassName={styles.Active}>
+        {/* <NavLink exact to="/blocked" className={styles.NavLink} activeClassName={styles.Active}>
             <i class="fa-solid fa-ban"></i>Blocked
-        </NavLink>
+        </NavLink> */}
 
         {currentUser?.is_staff &&
             <NavLink exact to="/suspicious" className={styles.NavLink} activeClassName={styles.Active}>
