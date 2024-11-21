@@ -1,21 +1,22 @@
 .Card {
     margin: 5px;
-    padding: 5px;
+    padding: 10px;
 }
 
-.reported-post {
+.reportedPost {
     display: flex;
 }
 
-#r-post-text-fields {
+.repPostTextFields {
     flex: 3;
 }
 
-#r-post-image {
+.repPostImage {
     max-width: 400px;
+    margin-right: 10px;
 }
 
-.SusCount {
+.susCount {
     border: none;
     color: dimgray;
     text-align: center;

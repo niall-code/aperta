@@ -363,6 +363,57 @@ It worked, as shown below.
 
 Having just committed "add reported=False filter to PostList queryset" on the back end and redeployed my API, I came here to confirm its success. It appears to indeed have worked for here in my front end too, post #5 being absent from the public feed but still existing if I append `/posts/5` to the URL.
 
+
+### Wed. 20 Nov., '24
+
+#### Create SuspiciousPage.js for moderator use
+
+I made `SuspiciousPage.js` at `src/pages/reports/`. In it, I put a `fetchReports` method that fetches instances of Report and saves them to the state. I also put a return statement containing JSX, with a ternary conditional that checks whether there are in fact any current reports.
+
+At this point, my JSX somewhat resembles vanilla HTML. I chose to begin coding my 'Suspicious' page in that way so that I fully understood what I was typing and so that the process was more enjoyable for me, both of which felt important for progressing swiftly with my project. However, some out-of-the-box Bootstrap elements and self-made, supplementary React components would soon start to be introduced, where necessary.
+
+I have decided that I want this page to present a single Report instance at a time, but indicate how many reports are awaiting review. This would promote efficiency of content moderation. The oldest report should appear first, as it has been awaiting review the longest.
+
+#### Add ReasonReader component to interpret integer
+
+Speaking of which, I next made `ReasonReader.js` at `src/components/`, into which I placed a draft of a switch statement. In service to my larger `SuspiciousPage` component, the atomic `ReasonReader` component will translate a Report instance's 'reason' field from an integer to a corresponding, human-readable string.
+
+
+### Thu. 21 Nov.
+
+#### Add 'Suspicious' route to App.js
+
+I placed another Route element into `App.js`, with a path matching the 'to' value of my staff-only "Suspicious" NavLink and a render pointing to `<SuspiciousPage />`.
+
+#### Add a SuspiciousPage.module.css stylesheet
+
+I created a `SuspiciousPage.module.css` file at `src/styles/`.
+
+#### Fix ReasonReader component
+
+I `npm start`ed my development server and found that my `ReasonReader` helper component was not successfully interpreting the reason integer. I added break statements and a default. I changed line 1 to make the component a standard function, not an arrow function, and I put curly braces around its parameter. I also wrapped switch's parameter in a `parseInt()`, just in case. The component now seems to be working as intended.
+
+![initial test of reason reader](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732206904/reason_text_ewiduf.png)
+
+#### Add Card elements to structure SuspiciousPage
+
+In `SuspiciousPage`, I imported React-Bootstrap's Card element, wrapped three of them around segments of my JSX, and nested those in a fourth, rapidly enhancing the visual structure of the page. I also began to connect with my stylesheet using `className` attributes.
+
+#### Fix post_image assignment in ReportCreateForm
+
+I noticed that my Report instances' 'post_image' fields have been getting a value of "undefined", even when the reported post did include an image. I previously thought optional chaining had fixed line 58 of `ReportCreateForm`, but I have now removed the `?.url`. A manual test showed me that a report about a post with an image now receives an appropriate value for that field, and that the value can later be read when the Report instance is retrieved by the moderator, i.e., the picture shows up.
+
+![fixing a field value assignment](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732206757/post_image_assign_jwsljp.png)
+
+#### Implement flexbox in SuspiciousPage
+
+Continuing to connect to my stylesheet via `className` attributes, I applied flexbox in such a way as to position the post's image to the left of its title and text on desktop, centered and grayed the 'remaining' count, and provided appropriate spacing. A horizontal line beneath the title also enhances the appearance.
+
+Although this page is just for a moderator, making it well-organised and easy to look at could improve their efficiency. My grouping of the content with nested Cards was based on the same rationale.
+
+![styled moderation page](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732208075/styled_mods_page_azhdrt.png)
+
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time.

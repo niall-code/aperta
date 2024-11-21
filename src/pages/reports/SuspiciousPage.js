@@ -49,22 +49,23 @@ function SuspiciousPage() {
                         </table>
                     </Card>
                     <Card className={styles.Card}>
-                        <section id="reported-post">
+                        <section className={styles.reportedPost}>
                             <figure>
                                 <img
                                     src={reports.results[0].post_image}
                                     alt="from reported post"
-                                    id="r-post-image"
+                                    className={styles.repPostImage}
                                 />
                             </figure>
 
-                            <article id="r-post-text-fields">
+                            <article className={styles.repPostTextFields}>
                                 <h5>{reports.results[0].post_title}</h5>
+                                <hr></hr>
                                 <p>{reports.results[0].post_text}</p>
                             </article>
                         </section>
                     </Card>
-                    <Card className={`${styles.Card} ${styles.SusCount}`}>
+                    <Card className={`${styles.Card} ${styles.susCount}`}>
                         <p>
                             <b>{reports.results.length}</b> suspicious posts to review
                         </p>
