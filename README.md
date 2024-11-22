@@ -438,6 +438,10 @@ I added a `handleDelete` method to my `SuspiciousPage` component and had the 'De
 
 ![successful report deletion](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732282316/report_deletion_wyoirl.png)
 
+#### Fix SuspiciousPage mobile responsiveness
+
+When I used devtools to see what my page would look like on a small device, I found that there was a mobile responsiveness issue. Specifically, the navbar, cards, and buttons extended slightly past the right edge of the simulated screen. It was unaesthetic and, more seriously, meant that the burger icon was mostly obscured. However, it seems that simply adding `max-width: 100vw;` into my `.Card` ruleset, in `SuspiciousPage.module.css`, seems to have fixed it.
+
 
 ## Credit
 
