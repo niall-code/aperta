@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import logo from "../../assets/logo.png";
 import ReasonReader from "../../components/ReasonReader";
 import styles from "../../styles/SuspiciousPage.module.css";
@@ -27,6 +27,16 @@ function SuspiciousPage() {
         };
         fetchReports();
     }, []);
+
+    const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/posts/${reports.results[0].post_id}/`);
+            await axiosRes.delete(`/suspicious/${reports.results[0].id}/`);
+            window.location.reload(); 
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <>
@@ -68,7 +78,7 @@ function SuspiciousPage() {
                     </Card>
                     <Card className={`${styles.Card} ${styles.flexBox}`}>
                         <Button variant="success">Approve</Button>
-                        <Button variant="danger">Delete</Button>
+                        <Button variant="danger" onClick={handleDelete}>Delete</Button>
                     </Card>
                     <Card className={`${styles.Card} ${styles.susCount}`}>
                         <p>

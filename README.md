@@ -422,6 +422,22 @@ Yesterday evening, I spotted in devtools that my 'Suspicious' page is generating
 
 I see that I gave my `ReportCreateForm`'s useEffect method a dependency array, with an `id` variable. At the time, my intention had been to pass a value - which had been collected with `const { id } = useParams();` - into useEffect, so that it could be accessed by its handleMount child method and injected into a GET request. I'm thinking that it also, or instead, prevented my current issue from occurring on that page. I'm now recalling that the dependency array tells useEffect to run only when there is a change to the variables listed. I believe that adding an empty dependency array to `SuspiciousPage`'s useEffect method will mean that it fetches the data once when the component mounts and not again, which should solve the immediate problem.
 
+#### Add handleDelete method to SuspiciousPage
+
+I added a `handleDelete` method to my `SuspiciousPage` component and had the 'Delete' button trigger it `onClick`. The method deletes the objectionable post and the report about it. Then, the next report will be displayed, if there is one. Some quick manual tests seemed to confirm its success. As you can see below, I had API tabs open to check for a back-end effect.
+
+    const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/posts/${reports.results[0].post_id}/`);
+            await axiosRes.delete(`/suspicious/${reports.results[0].id}/`);
+            window.location.reload(); 
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+![successful report deletion](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732282316/report_deletion_wyoirl.png)
+
 
 ## Credit
 
