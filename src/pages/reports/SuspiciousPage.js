@@ -38,6 +38,19 @@ function SuspiciousPage() {
         }
     };
 
+    const handleApprove = async () => {
+        try {
+            await axiosReq.patch(
+                `/posts/${reports.results[0].post_id}/`,
+                {reported: false, green_listed: true}
+            );
+            await axiosRes.delete(`/suspicious/${reports.results[0].id}/`);
+            window.location.reload();
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <>
             {reports.results.length ? (
@@ -77,7 +90,7 @@ function SuspiciousPage() {
                         </section>
                     </Card>
                     <Card className={`${styles.Card} ${styles.flexBox}`}>
-                        <Button variant="success">Approve</Button>
+                        <Button variant="success" onClick={handleApprove}>Approve</Button>
                         <Button variant="danger" onClick={handleDelete}>Delete</Button>
                     </Card>
                     <Card className={`${styles.Card} ${styles.susCount}`}>

@@ -442,6 +442,39 @@ I added a `handleDelete` method to my `SuspiciousPage` component and had the 'De
 
 When I used devtools to see what my page would look like on a small device, I found that there was a mobile responsiveness issue. Specifically, the navbar, cards, and buttons extended slightly past the right edge of the simulated screen. It was unaesthetic and, more seriously, meant that the burger icon was mostly obscured. However, it seems that simply adding `max-width: 100vw;` into my `.Card` ruleset, in `SuspiciousPage.module.css`, seems to have fixed it.
 
+#### Add handleApprove method to SuspiciousPage
+
+I added a `handleApprove` method to my `SuspiciousPage` component and had the 'Approve' button trigger it `onClick`. The method green lists the non-objectionable post and deletes the report about it. The Post instance's "reported" value is changed back to false, making the post reappear in the public feed. Its "green_listed" value is changed to true, making its 'Report' button disappear, which would prevent malicious reporting of an already moderator-reviewed post.
+
+    const handleApprove = async () => {
+        try {
+            await axiosReq.patch(
+                `/posts/${reports.results[0].post_id}/`,
+                {reported: false, green_listed: true}
+            );
+            await axiosRes.delete(`/suspicious/${reports.results[0].id}/`);
+            window.location.reload();
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+To link the "green_listed" Boolean to presence or absence of the 'Report' button, in my `Post` component, I added `green_listed,` into my desctructured props, then added an extra condition for the display of that button.
+
+    {currentUser && !green_listed &&
+
+        <Link to={`/report/${id}`}>
+            <Button  ...
+    }
+
+The post should only remain green listed until if and when the owner edits it. Therefore, in my `PostEditForm` component, I added an extra line to that effect into my `handleSubmit` method.
+
+    formData.append("green_listed", false);
+
+A manual test revealed that these solutions worked as I hoped.
+
+![successful green listing test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732294345/green_list_test_dtdh8l.jpg)
+
 
 ## Credit
 

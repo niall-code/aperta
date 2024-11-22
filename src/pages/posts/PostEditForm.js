@@ -63,6 +63,9 @@ function PostEditForm() {
         if (imageInput?.current?.files[0]) {
             formData.append("image", imageInput.current.files[0]);
         }
+
+        formData.append("green_listed", false);
+
         try {
             await axiosReq.put(`/posts/${id}/`, formData);
             history.push(`/posts/${id}`);

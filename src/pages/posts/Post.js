@@ -25,6 +25,7 @@ const Post = (props) => {
         post_text,
         image,
         changed_at,
+        green_listed,
         postPage,
         setPosts,
     } = props;
@@ -139,7 +140,7 @@ const Post = (props) => {
                 </div>
 
                 <div>
-                    {currentUser &&
+                    {currentUser && !green_listed &&
                         <Link to={`/report/${id}`}>
                             <Button
                                 variant="danger"
