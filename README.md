@@ -414,6 +414,15 @@ Although this page is just for a moderator, making it well-organised and easy to
 ![styled moderation page](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732208075/styled_mods_page_azhdrt.png)
 
 
+### Fri. 22 Nov.
+
+#### Fix useEffect method with empty dependency array
+
+Yesterday evening, I spotted in devtools that my 'Suspicious' page is generating a high and ever-increasing number of occasions of "cross-site cookie reading". I believe that this will be being caused by a flaw in my useEffect method. I know that useEffect acts upon every update, but I had imagined that the only update would be when the moderator actively clicks a button.
+
+I see that I gave my `ReportCreateForm`'s useEffect method a dependency array, with an `id` variable. At the time, my intention had been to pass a value - which had been collected with `const { id } = useParams();` - into useEffect, so that it could be accessed by its handleMount child method and injected into a GET request. I'm thinking that it also, or instead, prevented my current issue from occurring on that page. I'm now recalling that the dependency array tells useEffect to run only when there is a change to the variables listed. I believe that adding an empty dependency array to `SuspiciousPage`'s useEffect method will mean that it fetches the data once when the component mounts and not again, which should solve the immediate problem.
+
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time.

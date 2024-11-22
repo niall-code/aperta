@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 import { axiosReq } from "../../api/axiosDefaults";
@@ -25,7 +26,7 @@ function SuspiciousPage() {
             }
         };
         fetchReports();
-    });
+    }, []);
 
     return (
         <>
@@ -49,21 +50,25 @@ function SuspiciousPage() {
                         </table>
                     </Card>
                     <Card className={styles.Card}>
-                        <section className={styles.reportedPost}>
+                        <section className={styles.flexBox}>
                             <figure>
                                 <img
                                     src={reports.results[0].post_image}
                                     alt="from reported post"
-                                    className={styles.repPostImage}
+                                    className={styles.reportedPostImage}
                                 />
                             </figure>
 
-                            <article className={styles.repPostTextFields}>
+                            <article className={styles.reportedPostTextFields}>
                                 <h5>{reports.results[0].post_title}</h5>
                                 <hr></hr>
                                 <p>{reports.results[0].post_text}</p>
                             </article>
                         </section>
+                    </Card>
+                    <Card className={`${styles.Card} ${styles.flexBox}`}>
+                        <Button variant="success">Approve</Button>
+                        <Button variant="danger">Delete</Button>
                     </Card>
                     <Card className={`${styles.Card} ${styles.susCount}`}>
                         <p>
