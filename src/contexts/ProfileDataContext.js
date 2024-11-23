@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from "react";
 import { axiosRes } from "../api/axiosDefaults";
-// import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { followHelper, unfollowHelper } from "../utils/utils";
 
 
@@ -14,7 +13,6 @@ export const ProfileDataProvider = ({ children }) => {
     const [profileData, setProfileData] = useState({
         pageProfile: { results: [] },
     });
-    // const currentUser = useCurrentUser();
 
     const handleFollow = async (clickedProfile) => {
         try {

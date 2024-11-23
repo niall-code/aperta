@@ -86,10 +86,6 @@ const Post = (props) => {
         }
     };
 
-    // const handleReport = async () => {
-    //     history.push(`/report/${id}`);
-    // };
-
     return (
         <Card className={styles.Post}>
             <Card.Body>

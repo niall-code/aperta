@@ -38,7 +38,6 @@ function PostPage() {
             }
         };
         handleMount();
-        // console.log("post = ",post)
     }, [id]);
 
     return (

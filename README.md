@@ -492,13 +492,13 @@ I created `src/ mocks/handlers.js` and gave it some data that my test can preten
 
 My Jest testing flagged up that "memory leakage" was occurring. After some research to try to understand what it really meant, I decided to add an 'AbortController' in `SuspiciousPage.js` and `ReportCreateForm.js`, which should mean that if somebody closes or leaves the page in the middle of a process, it is better handled. My useEffect hooks were like a guy hanging around a party venue after the party has ended, but now they should get a nudge to go home.
 
-### Add confirmDelete method wrapping handleDelete
+#### Add confirmDelete method wrapping handleDelete
 
 I thought it was too easy for a user to accidentally delete a post that they might have put time and effort into creating, so I added a confirmation pop-up as an extra step, in `Post.js`. I don't feel this is necessary in `SuspiciousPage.js`, where post deletions will be frequent and constant "Are you sure?" messages would annoy the moderator.
 
 ![post delete confirmation](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732365081/delete_confirm_cqfab8.png)
 
-### Alter manifest.json icons
+#### Alter manifest.json icons
 
 I've been noticing a favicon and `public/manifest.json` related message in my console. To hopefully remedy it, I have altered the file to better reflect my current favicon situation.
 

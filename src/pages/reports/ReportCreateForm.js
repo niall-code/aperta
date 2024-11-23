@@ -22,8 +22,6 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-// import { data } from "msw/lib/types/context";
-// import { data } from "msw/lib/types/context";
 
 
 function ReportCreateForm() {
@@ -70,20 +68,15 @@ function ReportCreateForm() {
                     explanation: "",
                 }));
 
-                // return data;
             } catch (err) {
                 console.log(err);
             }
         };
         handleMount();
-        // console.log("post = ",post)
-        // return data;
         return () => {
             abortController.abort();
         };
     }, [id]);
-
-    // const {data} = useEffect();
 
     const handleChange = (event) => {
 
@@ -111,15 +104,6 @@ function ReportCreateForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        // const formData = new FormData();
-
-        // formData.append("post_id", reportData.post_id);
-        // formData.append("post_title", reportData.post_title);
-        // formData.append("post_text", reportData.post_text);
-        // formData.append("post_image", reportData.post_image);
-        // formData.append("reason", reportData.reason);
-        // formData.append("explanation", reportData.explanation);
 
         console.log("Data being sent to the server:", reportData);
 
@@ -210,7 +194,6 @@ function ReportCreateForm() {
             <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
                 type="submit"
-                // onClick={handleSubmit}
             >
                 Create
             </Button>
