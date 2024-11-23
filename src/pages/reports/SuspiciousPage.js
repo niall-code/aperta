@@ -75,11 +75,19 @@ function SuspiciousPage() {
                     <Card className={styles.Card}>
                         <section className={styles.flexBox}>
                             <figure>
-                                <img
-                                    src={reports.results[0].post_image}
-                                    alt="from reported post"
-                                    className={styles.reportedPostImage}
-                                />
+                                {reports.results[0].post_image ? (
+                                    <img
+                                        src={reports.results[0].post_image}
+                                        alt="from reported post"
+                                        className={styles.reportedPostImage}
+                                    />
+                                ) : (
+                                    <img
+                                        src="https://placehold.co/300x200?text=No+Image"
+                                        alt="from reported post"
+                                        className={styles.reportedPostImage}
+                                    />
+                                )}
                             </figure>
 
                             <article className={styles.reportedPostTextFields}>
