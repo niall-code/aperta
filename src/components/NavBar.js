@@ -28,22 +28,22 @@ const NavBar = () => {
 
     const loggedOutNav = <>
         <NavLink exact to="/signup" className={styles.NavLink} activeClassName={styles.Active}>
-            <i class="fa-solid fa-user-plus"></i>Sign Up
+            <i className="fa-solid fa-user-plus"></i>Sign Up
         </NavLink>
         <NavLink exact to="/login" className={styles.NavLink} activeClassName={styles.Active}>
-            <i class="fa-solid fa-door-open"></i>Log In
+            <i className="fa-solid fa-door-open"></i>Log In
         </NavLink>
     </>;
 
     const loggedInNav = <>
         <NavLink exact to="/posts/create" className={styles.NavLink} activeClassName={styles.Active}>
-            <i class="fa-solid fa-palette"></i>Create Post
+            <i className="fa-solid fa-palette"></i>Create Post
         </NavLink>
         <NavLink exact to="/liked" className={styles.NavLink} activeClassName={styles.Active}>
-            <i class="fa-solid fa-face-smile"></i>Liked
+            <i className="fa-solid fa-face-smile"></i>Liked
         </NavLink>
         <NavLink exact to="/followed" className={styles.NavLink} activeClassName={styles.Active}>
-            <i class="fa-solid fa-users"></i>Followed
+            <i className="fa-solid fa-users"></i>Followed
         </NavLink>
 
         {currentUser?.is_staff &&
@@ -53,10 +53,10 @@ const NavBar = () => {
         }
 
         <NavLink exact to={`/profiles/${currentUser?.profile_id}`} className={styles.NavLink} activeClassName={styles.Active}>
-            <i class="fa-solid fa-circle-user"></i>Profile
+            <i className="fa-solid fa-circle-user"></i>Profile
         </NavLink>
         <NavLink to="/" onClick={handleLogOut} className={styles.NavLink}>
-            <i class="fa-solid fa-door-closed"></i>Log Out
+            <i className="fa-solid fa-door-closed"></i>Log Out
         </NavLink>
 
         <Avatar src={currentUser?.profile_picture} text={currentUser?.username} height={40} />
@@ -75,7 +75,7 @@ const NavBar = () => {
                     <Nav className="ms-auto text-start">
 
                         <NavLink exact to="/" className={styles.NavLink} activeClassName={styles.Active}>
-                            <i class="fa-solid fa-globe"></i>Public Feed
+                            <i className="fa-solid fa-globe"></i>Public Feed
                         </NavLink>
 
                         {currentUser ? loggedInNav : loggedOutNav}
