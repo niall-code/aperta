@@ -498,6 +498,10 @@ I thought it was too easy for a user to accidentally delete a post that they mig
 
 ![post delete confirmation](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732365081/delete_confirm_cqfab8.png)
 
+### Alter manifest.json icons
+
+I've been noticing a favicon and `public/manifest.json` related message in my console. To hopefully remedy it, I have altered the file to better reflect my current favicon situation.
+
 
 ## Credit
 
