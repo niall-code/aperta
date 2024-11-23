@@ -28,12 +28,11 @@ export const ProfileDataProvider = ({ children }) => {
                 },
             }));
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 
     const handleUnfollow = async (clickedProfile) => {
-        console.log('CLICKED PROFILE: ', clickedProfile)
         try {
             await axiosRes.delete(`/followed/${clickedProfile.follow_id}/`);
             setProfileData((prevState) => ({
@@ -45,7 +44,7 @@ export const ProfileDataProvider = ({ children }) => {
                 },
             }));
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
     

@@ -30,11 +30,10 @@ function PostPage() {
                     axiosReq.get(`/posts/${id}/`),
                     axiosReq.get(`/comments/?commented_on_post=${id}`)
                 ]);
-                console.log("post in handle mount: ",post)
                 setPost({ results: [post] });
                 setComments(comments);
             } catch (err) {
-                console.log(err);
+                // console.log(err);
             }
         };
         handleMount();

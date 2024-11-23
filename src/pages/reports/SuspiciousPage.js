@@ -25,7 +25,7 @@ function SuspiciousPage() {
                 setReports(data);
 
             } catch (err) {
-                console.log(err);
+                // console.log(err);
             }
         };
         fetchReports();
@@ -40,7 +40,7 @@ function SuspiciousPage() {
             await axiosRes.delete(`/suspicious/${reports.results[0].id}/`);
             window.location.reload(); 
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 
@@ -53,7 +53,7 @@ function SuspiciousPage() {
             await axiosRes.delete(`/suspicious/${reports.results[0].id}/`);
             window.location.reload();
         } catch (err) {
-            console.log(err);
+            // console.log(err);
         }
     };
 

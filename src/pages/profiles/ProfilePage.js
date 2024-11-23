@@ -32,8 +32,6 @@ function ProfilePage() {
     const [profile] = pageProfile.results;
     const is_owner = currentUser?.username === profile?.owner;
 
-    console.log('PROFILE PAGE: ', profile)
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -49,7 +47,7 @@ function ProfilePage() {
                 setProfilePosts(profilePosts);
                 setHasLoaded(true);
             } catch (err) {
-                console.log(err);
+                // console.log(err);
             }
         };
         fetchData();

@@ -15,18 +15,15 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
 
 function ReportCreateForm() {
 
-    const currentUser = useCurrentUser();
     const [errors, setErrors] = useState({});
 
     const history = useHistory();
@@ -48,15 +45,10 @@ function ReportCreateForm() {
         const handleMount = async () => {
             try {
                 const {data} = await axiosReq.get(`/posts/${id}`, { signal });
-                console.log(data);
                 const post_id = parseInt(`${data.id}`);
-                console.log(post_id);
                 const post_title = `${data.title}`;
-                console.log(post_title);
                 const post_text = `${data.post_text}`;
-                console.log(post_text);
                 const post_image = `${data.image}`;
-                console.log(post_image);
 
                 setReportData((reportData) => ({
                     ...reportData,
@@ -69,7 +61,7 @@ function ReportCreateForm() {
                 }));
 
             } catch (err) {
-                console.log(err);
+                // console.log(err);
             }
         };
         handleMount();
@@ -105,8 +97,6 @@ function ReportCreateForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        console.log("Data being sent to the server:", reportData);
-
         try {
 
             await axiosReq.post("/suspicious/", reportData);
@@ -117,7 +107,7 @@ function ReportCreateForm() {
 
         } catch (err) {
 
-            console.log(err);
+            // console.log(err);
 
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
