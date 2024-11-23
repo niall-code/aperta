@@ -47,6 +47,13 @@ const Post = (props) => {
         }
     };
 
+    const confirmDelete = () => {
+        let answer = window.confirm("Are you sure you want to delete this post?");
+        if (answer) {
+            handleDelete();
+        }
+    };
+
     const handleLike = async () => {
         try {
             const { data } = await axiosRes.post("/likes/", { liked_post: id });
@@ -96,7 +103,7 @@ const Post = (props) => {
                         {is_owner && postPage && (
                             <MoreDropdown
                                 handleEdit={handleEdit}
-                                handleDelete={handleDelete}
+                                handleDelete={confirmDelete}
                             />
                         )}
                     </div>
