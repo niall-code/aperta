@@ -7,9 +7,9 @@ import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 
 import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/Form";
-import FormGroup from "react-bootstrap/Form";
-import FormLabel from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
+import FormGroup from "react-bootstrap/FormGroup";
+import FormLabel from "react-bootstrap/FormLabel";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -44,7 +44,7 @@ function ReportCreateForm() {
         const signal = abortController.signal;
         const handleMount = async () => {
             try {
-                const {data} = await axiosReq.get(`/posts/${id}`, { signal });
+                const { data } = await axiosReq.get(`/posts/${id}`, { signal });
                 const post_id = parseInt(`${data.id}`);
                 const post_title = `${data.title}`;
                 const post_text = `${data.post_text}`;
@@ -72,7 +72,7 @@ function ReportCreateForm() {
 
     const handleChange = (event) => {
 
-        if (event.target.name==='reason') {
+        if (event.target.name === 'reason') {
 
             const numReason = parseInt(event.target.value);
 
@@ -82,7 +82,7 @@ function ReportCreateForm() {
 
             }))
 
-        } else if (event.target.name==='explanation') {
+        } else if (event.target.name === 'explanation') {
 
             setReportData((reportData) => ({
                 ...reportData,
@@ -101,7 +101,7 @@ function ReportCreateForm() {
 
             await axiosReq.post("/suspicious/", reportData);
 
-            await axiosReq.patch(`/posts/${reportData.post_id}/`, {reported: true});
+            await axiosReq.patch(`/posts/${reportData.post_id}/`, { reported: true });
 
             history.push(`/`);
 
@@ -117,109 +117,94 @@ function ReportCreateForm() {
 
     };
 
-    const textFields = (
-
-        <div className="text-center">
-
-            <FormGroup>
-
-                <FormLabel>Reason</FormLabel>
-
-                <FormControl
-                    as="select"
-                    aria-label="Select reason for reporting"
-                    name="reason"
-                    value={reportData.reason}
-                    onChange={handleChange}
-                >
-                    <option value="0" default disabled>Please select a reason</option>
-                    <option value="1">Graphic violence</option>
-                    <option value="2">Explicit sexual content</option>
-                    <option value="3">Sexualization of minors</option>
-                    <option value="4">Inciting hatred</option>
-                    <option value="5">Encouraging suicide or self-harm</option>
-                    <option value="6">Attempting to defraud</option>
-                    <option value="7">Advertising illegal products</option>
-                    <option value="8">Blatant copyright infringement</option>
-                    <option value="9">
-                        Other serious reason - please describe in 'Explanation'
-                    </option>
-                </FormControl>
-
-            </FormGroup>
-            {errors?.reason?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-
-
-            <FormGroup>
-    
-                <FormLabel>Explanation</FormLabel>
-
-                <FormControl
-                    as="textarea"
-                    rows={4}
-                    name="explanation"
-                    value={reportData.explanation}
-                    onChange={handleChange}
-                />
-
-            </FormGroup>
-            {errors?.explanation?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                    {message}
-                </Alert>
-            ))}
-
-
-            <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                onClick={() => history.goBack()}
-            >
-                Cancel
-            </Button>
-
-            <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                type="submit"
-            >
-                Create
-            </Button>
-
-        </div>
-    );
-
-
     return (
 
-        <Form onSubmit={handleSubmit}>
-
-            <Row>
-                <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-                    <Container
-                        className={`
+        <Row>
+            <Col className="mx-auto py-2 p-0 p-md-2">
+                <Container
+                    className={`
                             ${appStyles.Content} ${styles.Container}
-                            d-flex flex-column justify-content-center
+                            d-flex flex-column justify-content-center text-center
                         `}
-                    >
+                >
 
-                        <div className="d-md-none">{textFields}</div>
+                    <Form onSubmit={handleSubmit}>
 
-                    </Container>
-                </Col>
+                        <FormGroup>
 
-                <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
-                    <Container className={appStyles.Content}>
+                            <FormLabel htmlFor="reason">Reason</FormLabel>
 
-                        {textFields}
+                            <FormControl
+                                as="select"
+                                aria-label="Select reason for reporting"
+                                name="reason"
+                                value={reportData.reason}
+                                onChange={handleChange}
+                                id="reason"
+                            >
+                                <option value="0" default disabled>Please select a reason</option>
+                                <option value="1">Graphic violence</option>
+                                <option value="2">Explicit sexual content</option>
+                                <option value="3">Sexualization of minors</option>
+                                <option value="4">Inciting hatred</option>
+                                <option value="5">Encouraging suicide or self-harm</option>
+                                <option value="6">Attempting to defraud</option>
+                                <option value="7">Advertising illegal products</option>
+                                <option value="8">Blatant copyright infringement</option>
+                                <option value="9">
+                                    Other serious reason - please describe
+                                </option>
+                            </FormControl>
 
-                    </Container>
-                </Col>
+                        </FormGroup>
+                        {errors?.reason?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
 
-            </Row>
-        </Form>
+
+                        <FormGroup>
+
+                            <FormLabel htmlFor="explanation">Explanation</FormLabel>
+
+                            <FormControl
+                                as="textarea"
+                                rows={4}
+                                name="explanation"
+                                value={reportData.explanation}
+                                onChange={handleChange}
+                                id="explanation"
+                            />
+
+                        </FormGroup>
+                        {errors?.explanation?.map((message, idx) => (
+                            <Alert variant="warning" key={idx}>
+                                {message}
+                            </Alert>
+                        ))}
+
+
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                            onClick={() => history.goBack()}
+                        >
+                            Cancel
+                        </Button>
+
+                        <Button
+                            className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                            type="submit"
+                        >
+                            Create
+                        </Button>
+
+                    </Form>
+
+
+                </Container>
+            </Col>
+        </Row>
 
     );
 };

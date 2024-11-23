@@ -502,6 +502,30 @@ I thought it was too easy for a user to accidentally delete a post that they mig
 
 I've been noticing a favicon and `public/manifest.json` related message in my console. To hopefully remedy it, I have altered the file to better reflect my current favicon situation.
 
+#### Change NavBar's i tag class attribute to className
+
+I have been seeing a warning in the console:
+
+> Invalid DOM property class. Did you mean className?
+
+I realised that it was referring to several of my Font Awesome icon-hosting `<i>` elements in my `NavBar` component having a 'class' attribute instead of a React-appropriate 'className' property, so I rectified that.
+
+#### Fix react-bootstrap imports to avoid nesting forms
+
+I was also seeing this warning in the console:
+
+> validateDOMNesting(...): form cannot appear as a descendant of form.
+
+For a time, it was confusing, as there were no visible occassions of a form element nested in another form element. After examing the Components tab of Devtools, it seemed that all discrete parts of the form in my `ReportCreateForm` component were showing up there as being forms. This didn't seem to match either my own eyes or the fact that the form had been sending successfully anyway, but I eventually discovered that the issue was with my react-bootstrap imports. Specifically, FormGroup, FormLabel, and FormControl had all been imported from `react-bootstrap/Form`. This has now been corrected, removing that warning.
+
+In `ReportCreateForm.js`, I have also:
+
+- added `htmlFor` and `id` attributes to my FormLabel and FormControl elements, respectively, to try to ensure that the label is properly associated with the input,
+
+- altered my Bootstrap structure, so that the reporting form will be larger and central instead of small and to the side,
+
+- and shifted my entire "text fields" down into the actual form, which otherwise would have been bare.
+
 
 ## Credit
 
