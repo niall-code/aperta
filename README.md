@@ -476,6 +476,23 @@ A manual test revealed that these solutions worked as I hoped.
 ![successful green listing test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732294345/green_list_test_dtdh8l.jpg)
 
 
+### Sat. 23 Nov.
+
+#### Add placeholder image for when post_image is falsy
+
+Again in `SuspiciousPage.js`, I added a ternary conditional that should mean an image from a reported post is displayed if there is one and a placeholder rectangle with the words 'No Image' is displayed if not.
+
+#### Enable automated testing
+
+I created `src/ mocks/handlers.js` and gave it some data that my test can pretend is fetched from my API, added to `setupTests.js`, and created `src/pages/reports/ __tests__/SuspiciousPage.test.js`, in which I wrote a Jest automated test to check that my previous placeholder commit was efficacious. Although it would have been faster to just test it manually, since I had to work a lot of things out, this should demonstrate that I am able to do an automated test and also has let me better learn how it works, which could be useful beyond the course.
+
+![placeholder test passed](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732363283/jest_image_pass_p1gamo.png)
+
+#### Add cleanup to useEffect hooks
+
+My Jest testing flagged up that "memory leakage" was occurring. After some research to try to understand what it really meant, I decided to add an 'AbortController' in `SuspiciousPage.js` and `ReportCreateForm.js`, which should mean that if somebody closes or leaves the page in the middle of a process, it is better handled. My useEffect hooks were like a guy hanging around a party venue after the party has ended, but now they should get a nudge to go home.
+
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time.

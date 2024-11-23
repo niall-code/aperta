@@ -13,12 +13,15 @@ function SuspiciousPage() {
     const [reports, setReports] = useState({ results: [] });
 
     useEffect(() => {
+        const abortController = new AbortController();
+        const signal = abortController.signal;
+
         /**
          * Fetches Report instances
         */
         const fetchReports = async () => {
             try {
-                const { data } = await axiosReq.get("/suspicious");
+                const { data } = await axiosReq.get("/suspicious", { signal });
                 setReports(data);
 
             } catch (err) {
@@ -26,6 +29,9 @@ function SuspiciousPage() {
             }
         };
         fetchReports();
+        return () => {
+            abortController.abort();
+        };
     }, []);
 
     const handleDelete = async () => {

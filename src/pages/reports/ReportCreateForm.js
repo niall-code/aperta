@@ -45,9 +45,11 @@ function ReportCreateForm() {
     });
 
     useEffect(() => {
+        const abortController = new AbortController();
+        const signal = abortController.signal;
         const handleMount = async () => {
             try {
-                const {data} = await axiosReq.get(`/posts/${id}`);
+                const {data} = await axiosReq.get(`/posts/${id}`, { signal });
                 console.log(data);
                 const post_id = parseInt(`${data.id}`);
                 console.log(post_id);
@@ -76,6 +78,9 @@ function ReportCreateForm() {
         handleMount();
         // console.log("post = ",post)
         // return data;
+        return () => {
+            abortController.abort();
+        };
     }, [id]);
 
     // const {data} = useEffect();
