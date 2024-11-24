@@ -527,6 +527,24 @@ In `ReportCreateForm.js`, I have also:
 - and shifted my entire "text fields" down into the actual form, which otherwise would have been bare.
 
 
+### Sun. 24 Nov.
+
+#### Add authentication checks to recently-made pages
+
+I added code to `ReportCreateForm.js` that should turn an unauthenticated user away from the page, in case they try to access it by manually appending to the URL. I added code to `SuspiciousPage.js` that should turn away both unauthenticated users and users without staff status. After thinking about how to do it, I realised the means already existed elsewhere in the project and could be reapplied.
+
+#### Wrap post title with link
+
+A post in the public feed needs a link to view that individual post. The post images are links but not every post has an image. Previously, the backup link was the comments icon. I've now made the post title be the link instead, which is more expected.
+
+
+### User Stories Review
+
+![finished user stories](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732478454/finished_ustories_ovbjd1.png)
+
+![all acceptance criteria reviewed](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732487042/aperta_ustories_reviewed_zab2du.png)
+
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time.
