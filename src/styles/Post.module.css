@@ -6,6 +6,15 @@
     text-align: center;
 }
 
+.Link {
+    text-decoration: none;
+    color: black;
+}
+
+.Link:hover {
+    color: blue;
+}
+
 .Post figure,
 h5 {
     margin: 0 0;

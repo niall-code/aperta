@@ -109,7 +109,9 @@ const Post = (props) => {
                 {image && <Card.Img src={image} alt={title} />}
             </Link>
             <Card.Body>
-                {title && <Card.Title className="text-center">{title}</Card.Title>}
+                <Link to={`/posts/${id}`} className={styles.Link}>
+                    {title && <Card.Title className="text-center">{title}</Card.Title>}
+                </Link>
                 {post_text && <Card.Text>{post_text}</Card.Text>}
                 <div className={styles.PostBar}>
                     {is_owner ? (
@@ -136,9 +138,7 @@ const Post = (props) => {
                         </OverlayTrigger>
                     )}
                     {likes_count}
-                    <Link to={`/posts/${id}`}>
-                        <i className="far fa-comments" />
-                    </Link>
+                    <i className="far fa-comments" />
                     {comments_count}
                 </div>
 
