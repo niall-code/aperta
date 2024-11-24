@@ -21,8 +21,12 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
+import { useRedirect } from "../../hooks/useRedirect";
+
 
 function ReportCreateForm() {
+
+    useRedirect("loggedOut");
 
     const [errors, setErrors] = useState({});
 

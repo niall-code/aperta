@@ -7,8 +7,20 @@ import logo from "../../assets/logo.png";
 import ReasonReader from "../../components/ReasonReader";
 import styles from "../../styles/SuspiciousPage.module.css";
 
+import { useRedirect } from "../../hooks/useRedirect";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useHistory } from "react-router-dom";
+
 
 function SuspiciousPage() {
+
+    useRedirect("loggedOut");
+    const currentUser = useCurrentUser();
+    const history = useHistory();
+
+    if (!currentUser.is_staff) {
+        history.push("/");
+    }
 
     const [reports, setReports] = useState({ results: [] });
 
