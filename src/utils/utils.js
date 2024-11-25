@@ -17,19 +17,23 @@ export const fetchMoreData = async (resource, setResource) => {
     } catch (err) { }
 };
 
-export const followHelper = (profile, clickedProfile, following_id) => {
+/**
+ * When user follows a profile, updates its followers count
+ * and sets a follow id.
+*/
+export const followHelper = (profile, clickedProfile, follow_id) => {
     return profile.id === clickedProfile.id
         ? // This is the profile I clicked on,
-        // update its followers count and set its following id
+        // update its followers count and set its follow id
         {
             ...profile,
             followers_count: profile.followers_count + 1,
-            following_id,
+            follow_id,
         }
         : profile.is_owner
             ? // This is the profile of the logged in user
-            // update its following count
-            { ...profile, following_count: profile.following_count + 1 }
+            // update its follows count
+            { ...profile, follows_count: profile.follows_count + 1 }
             : // this is not the profile the user clicked on or the profile
             // the user owns, so just return it unchanged
             profile;
@@ -38,16 +42,16 @@ export const followHelper = (profile, clickedProfile, following_id) => {
 export const unfollowHelper = (profile, clickedProfile) => {
     return profile.id === clickedProfile.id
         ? // This is the profile I clicked on,
-        // update its followers count and set its following id
+        // update its followers count and set its follow id
         {
             ...profile,
             followers_count: profile.followers_count - 1,
-            following_id: null,
+            follow_id: null,
         }
         : profile.is_owner
             ? // This is the profile of the logged in user
-            // update its following count
-            { ...profile, following_count: profile.following_count - 1 }
+            // update its follows count
+            { ...profile, follows_count: profile.follows_count - 1 }
             : // this is not the profile the user clicked on or the profile
             // the user owns, so just return it unchanged
             profile;

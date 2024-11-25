@@ -625,6 +625,13 @@ I closed my Issues.
 [axiosDefaults.js](https://typescript-eslint.io/play/#ts=5.6.2&fileType=.js&code=JYWwDg9gTgLgBAQwB7AgZzgMyhEcBEyqa%2BA3ALABQVR6AdACYCmmCArgDYxp0BGCaJgFUASgBk4AXgIALGDDBoAXAHoVCME1gIAtBuA6mAFgCMAJl4B2AMZmEZkyboytEANZsNYOtdwqyNCj0zKyc3M5MCMxQPJBoMADa%2BADCEAB2MEwZOgAqAJ6a%2BAC6UgQgYcBgCLAqmNAgOgwIMAgBlLQ8IexcPADuwDAyyVBMzBnACBwY0jBQbEwU1JRqcCMAjvPxcABkq0xokGmCcMAZWtZMYDDQaFRMSJCwcL5H8B0iTGulHT4jzUwACgAlIt7o94C8tu99t8gjxrH9MsDFkA&eslintrc=N4KABGBEBOCuA2BTAzpAXGYBfEWg&tsconfig=N4KABGBEDGD2C2AHAlgGwKYCcDyiAuysAdgM6QBcYoEEkJemy0eAcgK6qoDCAFutAGsylBm3TgwAXxCSgA&tokens=false)
 
 
+### Amend 'follow' suffixes in utils.js
+
+The issue of various permutations of the word follow surfaced again. Looking across the files `Profile.js`, `ProfilePage.js`, `utils.js`, and `App.js` here, and `profiles/serializers.py` and `profiles/views.py` on my back end, I considered whether the various forms of the word follow were correct in all these locations. I decided that `utils.js` was the most likely to be wrong, because it was the only file in which the variant "following" appeared. I decided that cases of following with `_id` appended should be **follow** (the ID of the Follow instance) and that cases with `_count` appended should be **follows** (the number of people a person follows).
+
+![solving the follow issue](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732569163/solving_follow_z1kvgw.jpg)
+
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time.
