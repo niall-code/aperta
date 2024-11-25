@@ -1,7 +1,11 @@
-import axios from "axios";
+// React hooks and routing
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 
+// HTTP client
+import axios from "axios";
+
+// API requests and utilities
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
 

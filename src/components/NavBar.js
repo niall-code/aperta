@@ -1,15 +1,32 @@
-import axios from "axios";
+// React core and routing
 import React from "react";
+import { NavLink } from "react-router-dom";
+
+// HTTP client
+import axios from "axios";
+
+// Third-party components
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
 
-import logo from "../assets/logo.png";
-import Avatar from "./Avatar";
-import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
-import styles from "../styles/NavBar.module.css";
+// Project-specific imports
+
+// Utilities
 import { removeTokenTimestamp } from "../utils/utils";
+
+// Contexts
+import {
+    useCurrentUser,
+    useSetCurrentUser
+} from "../contexts/CurrentUserContext";
+
+// Component
+import Avatar from "./Avatar";
+
+// Image and styles
+import logo from "../assets/logo.png";
+import styles from "../styles/NavBar.module.css";
 
 
 const NavBar = () => {

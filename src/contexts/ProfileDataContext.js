@@ -1,4 +1,7 @@
+// React hooks
 import { createContext, useContext, useState } from "react";
+
+// API requests and utilities
 import { axiosRes } from "../api/axiosDefaults";
 import { followHelper, unfollowHelper } from "../utils/utils";
 

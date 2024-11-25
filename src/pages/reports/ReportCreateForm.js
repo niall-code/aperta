@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from "react";
+// React core, hooks, and routing
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 
-import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
-
+// Third-party components
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
-
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import FormGroup from "react-bootstrap/FormGroup";
 import FormLabel from "react-bootstrap/FormLabel";
-
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
 
+// Project-specific imports
 import { axiosReq } from "../../api/axiosDefaults";
-
-import styles from "../../styles/PostCreateEditForm.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
-
 import { useRedirect } from "../../hooks/useRedirect";
+
+// Styles
+import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/PostCreateEditForm.module.css";
 
 
 function ReportCreateForm() {

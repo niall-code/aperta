@@ -1,25 +1,40 @@
+// React core, hooks, and routing
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+// Third-party components
+import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import Asset from "../../components/Asset";
-import styles from "../../styles/ProfilePage.module.css";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router";
+import Image from "react-bootstrap/Image";
+import Row from "react-bootstrap/Row";
+import InfiniteScroll from "react-infinite-scroll-component";
+
+// Project-specific imports
+
+// API requests and utilities
 import { axiosReq } from "../../api/axiosDefaults";
+import { fetchMoreData } from "../../utils/utils";
+
+// Contexts
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import {
     useProfileData,
-    useSetProfileData,
+    useSetProfileData
 } from "../../contexts/ProfileDataContext";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
-import InfiniteScroll from "react-infinite-scroll-component";
+
+// Components
 import Post from "../posts/Post";
-import { fetchMoreData } from "../../utils/utils";
-import NoResults from "../../assets/no-results.png";
+import Asset from "../../components/Asset";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
+
+// Local images
+import NoResults from "../../assets/no-results.png";
+
+// Styles
+import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/ProfilePage.module.css";
 
 
 function ProfilePage() {

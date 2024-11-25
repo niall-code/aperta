@@ -1,15 +1,22 @@
+// React core, hooks, and routing
 import React from "react";
-import styles from "../../styles/Post.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { Link, useHistory } from "react-router-dom";
+
+// Third-party components
+import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { Link, useHistory } from "react-router-dom";
-import Avatar from "../../components/Avatar";
+
+// Project-specific imports
 import { axiosRes } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
-import Button from "react-bootstrap/Button";
+
+// Styles
+import styles from "../../styles/Post.module.css";
 
 
 const Post = (props) => {

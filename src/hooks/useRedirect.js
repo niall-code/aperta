@@ -1,6 +1,11 @@
-import axios from "axios";
+// React hooks and routing
 import { useEffect } from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
+
+// HTTP client
+import axios from "axios";
+
+
 export const useRedirect = (userAuthStatus) => {
     const history = useHistory();
     useEffect(() => {

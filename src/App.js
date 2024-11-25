@@ -1,23 +1,35 @@
-import Container from "react-bootstrap/Container";
+// React routing
 import { Route, Switch } from "react-router-dom";
 
+// Third-party component
+import Container from "react-bootstrap/Container";
+
+// Project-specific imports
+
+// API requests
 import "./api/axiosDefaults";
+
+// Contexts
+import { useCurrentUser } from "./contexts/CurrentUserContext";
+
+// Components
 import NavBar from "./components/NavBar";
+import NotFound from "./components/NotFound";
 import LogInForm from "./pages/auth/LogInForm"
 import SignUpForm from "./pages/auth/SignUpForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
-import ReportCreateForm from "./pages/reports/ReportCreateForm";
-import PostPage from "./pages/posts/PostPage";
-import styles from "./App.module.css";
-import PostsPage from "./pages/posts/PostsPage";
-import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PostEditForm from "./pages/posts/PostEditForm";
+import PostPage from "./pages/posts/PostPage";
+import PostsPage from "./pages/posts/PostsPage";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
-import ProfileEditForm from "./pages/profiles/ProfileEditForm";
-import NotFound from "./components/NotFound";
+import ReportCreateForm from "./pages/reports/ReportCreateForm";
 import SuspiciousPage from "./pages/reports/SuspiciousPage";
+
+// Styles
+import styles from "./App.module.css";
 
 
 function App() {

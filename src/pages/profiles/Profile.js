@@ -1,11 +1,22 @@
+// React core, hooks, and routing
 import React from "react";
-import styles from "../../styles/Profile.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
-import Avatar from "../../components/Avatar";
+
+// Third-party components
 import Button from "react-bootstrap/Button";
+
+// Project-specific imports
+
+// Contexts
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
+
+// Components
+import Avatar from "../../components/Avatar";
+
+// Styles
+import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/Profile.module.css";
 
 
 const Profile = (props) => {

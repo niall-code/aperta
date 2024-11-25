@@ -1,19 +1,27 @@
-import axios from "axios";
+// React core, hooks, and routing
 import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+
+// HTTP client
+import axios from "axios";
+
+// Third-party components
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { Link, useHistory } from "react-router-dom";
 
+// Project-specific imports
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
-import btnStyles from "../../styles/Button.module.css";
-import styles from "../../styles/SignUpLogInForm.module.css";
-import appStyles from "../../App.module.css";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
+
+// Styles
+import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/SignUpLogInForm.module.css";
 
 
 function LogInForm() {

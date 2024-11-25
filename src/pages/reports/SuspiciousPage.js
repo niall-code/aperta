@@ -1,15 +1,23 @@
+// React core, hooks, and routing
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+
+// Third-party components
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
-import logo from "../../assets/logo.png";
-import ReasonReader from "../../components/ReasonReader";
-import styles from "../../styles/SuspiciousPage.module.css";
+// Project-specific imports
 
-import { useRedirect } from "../../hooks/useRedirect";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useHistory } from "react-router-dom";
+import { useRedirect } from "../../hooks/useRedirect";
+
+// Component
+import ReasonReader from "../../components/ReasonReader";
+
+// Image and styles
+import logo from "../../assets/logo.png";
+import styles from "../../styles/SuspiciousPage.module.css";
 
 
 function SuspiciousPage() {

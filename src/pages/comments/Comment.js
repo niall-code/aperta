@@ -1,12 +1,25 @@
+// React core, hooks, and routing
 import React, { useState } from "react";
-import Media from "react-bootstrap/Media";
 import { Link } from "react-router-dom";
+
+// Third-party components
+import Media from "react-bootstrap/Media";
+
+// Project-specific imports
+
+// API requests
+import { axiosRes } from "../../api/axiosDefaults";
+
+// Contexts
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
+// Components
+import CommentEditForm from "./CommentEditForm";
 import Avatar from "../../components/Avatar";
 import { MoreDropdown } from "../../components/MoreDropdown";
+
+// Styles
 import styles from "../../styles/Comment.module.css";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { axiosRes } from "../../api/axiosDefaults";
-import CommentEditForm from "./CommentEditForm";
 
 
 const Comment = (props) => {

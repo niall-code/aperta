@@ -1,10 +1,15 @@
+// React core, hooks, and routing
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
+// Third-party components
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import styles from "../../styles/CommentCreateEditForm.module.css";
-import Avatar from "../../components/Avatar";
+
+// Project-specific imports
 import { axiosRes } from "../../api/axiosDefaults";
+import Avatar from "../../components/Avatar";
+import styles from "../../styles/CommentCreateEditForm.module.css";
 
 
 function CommentCreateForm(props) {

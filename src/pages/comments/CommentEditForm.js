@@ -1,6 +1,13 @@
+// React core and hooks
 import React, { useState } from "react";
+
+// Third-party components
 import Form from "react-bootstrap/Form";
+
+// API requests
 import { axiosRes } from "../../api/axiosDefaults";
+
+// Styles
 import styles from "../../styles/CommentCreateEditForm.module.css";
 
 

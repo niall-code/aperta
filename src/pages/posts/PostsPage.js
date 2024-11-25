@@ -1,18 +1,32 @@
+// React core, hooks, and routing
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+// Third-party components
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useLocation } from "react-router";
 
-import Post from "./Post";
+// Project-specific imports
+
+// API requests and utilities
 import { axiosReq } from "../../api/axiosDefaults";
-import NoResults from "../../assets/no-results.png";
-import Asset from "../../components/Asset";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import styles from "../../styles/PostsPage.module.css";
 import { fetchMoreData } from "../../utils/utils";
+
+// Contexts
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
+// Components
+import Post from "./Post";
+import Asset from "../../components/Asset";
+
+// Local images
+import NoResults from "../../assets/no-results.png";
+
+// Styles
+import styles from "../../styles/PostsPage.module.css";
 import appStyles from "../../App.module.css";
 
 
