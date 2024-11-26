@@ -32,6 +32,10 @@ import SuspiciousPage from "./pages/reports/SuspiciousPage";
 import styles from "./App.module.css";
 
 
+/**
+ * Renders the NavBar component plus one component-based page,
+ * selected from a Switch case of Routes based on a URL path.
+*/
 function App() {
     const currentUser = useCurrentUser();
     const profile_id = currentUser?.profile_id || "";
@@ -42,6 +46,8 @@ function App() {
 
             <Container className={styles.Main}>
                 <Switch>
+
+                    {/* Public Feed - all posts */}
                     <Route
                         exact path="/"
                         render={() => (
@@ -49,6 +55,7 @@ function App() {
                         )}
                     />
 
+                    {/* Followed - posts by users you followed */}
                     <Route
                         exact path="/followed"
                         render={() => (
@@ -59,6 +66,7 @@ function App() {
                         )}
                     />
 
+                    {/* Liked - posts you liked */}
                     <Route
                         exact path="/liked"
                         render={() => (
@@ -68,56 +76,78 @@ function App() {
                             />
                         )}
                     />
+
+                    {/* Log In - authentication */}
                     <Route
                         exact
                         path="/login"
                         render={() => <LogInForm />}
                     />
-                    <Route
-                        exact
-                        path="/signup"
-                        render={() => <SignUpForm />}
-                    />
+
+                    {/* Create Post - content creation */}
                     <Route
                         exact
                         path="/posts/create"
                         render={() => <PostCreateForm />}
                     />
+
+                    {/* Viewing an individual post */}
                     <Route
                         exact
                         path="/posts/:id/"
                         render={() => <PostPage />}
                     />
+
+                    {/* Editing an owned post */}
                     <Route
                         exact
                         path="/posts/:id/edit"
                         render={() => <PostEditForm />}
                     />
-                    <Route
-                        exact
-                        path="/report/:id"
-                        render={() => <ReportCreateForm />}
-                    />
+
+                    {/* Viewing own or another user's profile */}
                     <Route
                         exact
                         path="/profiles/:id"
                         render={() => <ProfilePage />}
                     />
-                    <Route
-                        exact
-                        path="/profiles/:id/edit/username"
-                        render={() => <UsernameForm />}
-                    />
-                    <Route
-                        exact
-                        path="/profiles/:id/edit/password"
-                        render={() => <UserPasswordForm />}
-                    />
+
+                    {/* Editing own profile */}
                     <Route
                         exact
                         path="/profiles/:id/edit"
                         render={() => <ProfileEditForm />}
                     />
+
+                    {/* Changing password */}
+                    <Route
+                        exact
+                        path="/profiles/:id/edit/password"
+                        render={() => <UserPasswordForm />}
+                    />
+
+                    {/* Changing username */}
+                    <Route
+                        exact
+                        path="/profiles/:id/edit/username"
+                        render={() => <UsernameForm />}
+                    />
+
+                    {/* Reporting content for moderator review */}
+                    <Route
+                        exact
+                        path="/report/:id"
+                        render={() => <ReportCreateForm />}
+                    />
+
+                    {/* Sign Up (registration) */}
+                    <Route
+                        exact
+                        path="/signup"
+                        render={() => <SignUpForm />}
+                    />
+
+                    {/* Moderators' page */}
                     <Route
                         exact
                         path="/suspicious"
@@ -125,6 +155,7 @@ function App() {
                     />
 
                     <Route render={() => <NotFound />} />
+
                 </Switch>
             </Container>
         </div>
