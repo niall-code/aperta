@@ -36,21 +36,41 @@ const ProfileEditForm = () => {
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
+
+        let isMounted = true;
+
         const handleMount = async () => {
             if (currentUser?.profile_id?.toString() === id) {
                 try {
                     const { data } = await axiosReq.get(`/profiles/${id}/`);
                     const { profile_picture } = data;
-                    setProfileData({ profile_picture });
+
+                    if (isMounted) {
+                        setProfileData({ profile_picture });
+                    }
+
                 } catch (err) {
                     // console.log(err);
-                    history.push("/");
+
+                    if (isMounted) {
+                        history.push("/");
+                    }
+
                 }
             } else {
-                history.push("/");
+
+                if (isMounted) {
+                    history.push("/");
+                }
+
             }
         };
         handleMount();
+
+        return () => {
+            isMounted = false;
+        };
+
     }, [currentUser, history, id]);
 
     const handleSubmit = async (event) => {
@@ -116,9 +136,10 @@ const ProfileEditForm = () => {
                                 accept="image/*"
                                 onChange={(e) => {
                                     if (e.target.files.length) {
+                                        const file = e.target.files[0];
                                         setProfileData({
                                             ...profileData,
-                                            image: URL.createObjectURL(e.target.files[0]),
+                                            profile_picture: URL.createObjectURL(file),
                                         });
                                     }
                                 }}
@@ -134,4 +155,6 @@ const ProfileEditForm = () => {
         </Form>
     );
 };
+
+
 export default ProfileEditForm;

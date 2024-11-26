@@ -631,6 +631,41 @@ The issue of various permutations of the word follow surfaced again. Looking acr
 
 ![solving the follow issue](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732569163/solving_follow_z1kvgw.jpg)
 
+### Full Manual Testing
+
+I'm now going to manually test all the features of my site. I've worked out an order in which to do them that should be most efficient. Some will be confirmation that previously tested functionality has not been broken, and some will be newly tested.
+
+![manual tests chart](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732647519/full_manual_testing_ndd5e1.png)
+
+![signup and login tests](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732649388/mt_signup_login_zpwpcm.png)
+
+![username change test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732649855/mt_uname_qgukyd.png)
+
+![password change test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732650208/mt_password_jdnzwl.png)
+
+![profile picture change test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732651373/mt_pfp_l5c73a.png)
+
+![]()
+
+![]()
+
+![]()
+
+![]()
+
+![]()
+
+![]()
+
+![]()
+
+![]()
+
+### Fix unchanged image preview in ProfileEditForm
+
+The profile picture successfully changed but without the preview having changed before clicking Save. I've fixed this by changing "image" to "profile_picture" at about line 142 of `ProfileEditForm.js`.
+
+I've also added cleanup to the `useEffect` method.
 
 ## Credit
 
@@ -645,3 +680,5 @@ The issue of various permutations of the word follow surfaced again. Looking acr
 - Code Institute tutors Rebecca and Holly assisted with fixing problems with my `handleUnfollow` method and with post filtering for my 'Followed' page, as described above.
 
 - The 'No Image' placeholder on the Suspicious page uses https://placehold.co.
+
+- To avoid wasting time inventing post text from imaginary users, I asked ChatGPT to write posts based on prompts I gave it.
