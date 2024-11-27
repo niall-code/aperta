@@ -1,8 +1,13 @@
 # Aperta
 
+![responsiveness mockup](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732719200/responsive_mockup_rbtkoo.png)
+
 This React app is designed to serve as the front end of my full-stack portfolio project, Aperta. This README.md file also includes the overview of my project, aspects that are not exclusively front or back end.
 
-The repository for the back end can be found here: https://github.com/niall-code/aperta-api
+The deployed site can be found here: https://aperta-d13fdb04474d.herokuapp.com
+
+
+(The repository for the back end can be found here: https://github.com/niall-code/aperta-api )
 
 Aperta is a content platform, made distinct from my Moments walkthrough project by the inclusion of additional functionality, particularly security features like the ability to report an inappropriate post. I wanted to improve on the concept previously explored by addressing the real-world issue that a platform will inevitably be misused by some people. As such, my main project goal was to create a social media platform where due attention is given to minimising unpleasant interactions and removing objectionable material, letting users enjoy and utilise the web application in a welcoming environment.
 
@@ -277,6 +282,8 @@ From my Heroku dashboard, I clicked 'New', 'Create new app', named it _aperta_ a
 Then, I changed my _aperta-api_ app's CLIENT_ORIGIN config var to the URL of my production front end.
 
 ![live production front end](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1731675636/deploy_4_live_orwh0j.png)
+
+The deployed site can be found here: https://aperta-d13fdb04474d.herokuapp.com
 
 ### Priority and future-release functionalities
 
@@ -687,7 +694,7 @@ Liking tests
 
 Following tests
 
-![]()
+![following tests](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732718328/mt_following_pvpast.jpg)
 
 ### Fix unchanged image preview in ProfileEditForm
 
@@ -699,9 +706,21 @@ I've also added cleanup to the `useEffect` method.
 
 My Gitpod workspace became corrupted, probably through no fault of mine, and would not open, perpetually claiming to be in the process of opening. I made a new workspace from my GitHub repo and changed production Aperta API's Heroku config var CLIENT_ORIGIN_DEV to match development Aperta's server URL.
 
+### Fix Suspicious page image, condition, and cleanup
+
+My placeholder image was failing to appear on an imageless report. Adding `.value` to make `{reports.results[0].post_image.value ? (` appears to have fixed it.
+
+![placeholder present](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732725767/placeholder_fixed_ihbdk3.png)
+
+I put my staff status check inside another `useEffect`, to get rid of a full-screen warning about sometimes not being able to access the value.
+
+I ditched Abort Controller here and replaced it with the `isMounted` approach to cleanup. However, this may have been before sorting out the staff issue, so perhaps was not necessary.
+
+I also got rid of another error message by inserting `<tbody>` between `<table>` and `<tr>`.
+
 ## Credit
 
-- My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time.
+- My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time. Likewise, the 'nothing found' and 'upload' graphics.
 
 - My Aperta logo was created using Adobe Express' free [logo maker](https://www.adobe.com/express/create/logo).
 
@@ -714,3 +733,7 @@ My Gitpod workspace became corrupted, probably through no fault of mine, and wou
 - The 'No Image' placeholder on the Suspicious page uses https://placehold.co.
 
 - To avoid wasting time inventing post text from imaginary users, I asked ChatGPT to write posts based on prompts I gave it.
+
+- My demo posts include a screenshot I took of the video game Cocoon, a photo I took at a zoo, and a photo of an eye I drew.
+
+- Responsiveness mockup at the top made with https://ui.dev/amiresponsive

@@ -23,6 +23,16 @@
     text-align: center;
 }
 
+.logo {
+    max-width: 300px;
+    margin: 0 auto;
+    opacity: 50%;
+}
+
+.center {
+    text-align: center;
+}
+
 @media (max-width: 600px) {
     .flexBox {
         flex-direction: column;

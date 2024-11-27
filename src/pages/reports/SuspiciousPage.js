@@ -26,23 +26,26 @@ function SuspiciousPage() {
     const currentUser = useCurrentUser();
     const history = useHistory();
 
-    if (!currentUser.is_staff) {
-        history.push("/");
-    }
+    useEffect(() => {
+        if (currentUser && !currentUser.is_staff) {
+            history.push("/");
+        }
+    }, [currentUser, history]);
 
     const [reports, setReports] = useState({ results: [] });
 
     useEffect(() => {
-        const abortController = new AbortController();
-        const signal = abortController.signal;
+        let isMounted = true;
 
         /**
          * Fetches Report instances
         */
         const fetchReports = async () => {
             try {
-                const { data } = await axiosReq.get("/suspicious", { signal });
-                setReports(data);
+                const { data } = await axiosReq.get("/suspicious");
+                if (isMounted) {
+                    setReports(data);
+                }
 
             } catch (err) {
                 // console.log(err);
@@ -50,7 +53,7 @@ function SuspiciousPage() {
         };
         fetchReports();
         return () => {
-            abortController.abort();
+            isMounted = false;
         };
     }, []);
 
@@ -58,7 +61,7 @@ function SuspiciousPage() {
         try {
             await axiosRes.delete(`/posts/${reports.results[0].post_id}/`);
             await axiosRes.delete(`/suspicious/${reports.results[0].id}/`);
-            window.location.reload(); 
+            window.location.reload();
         } catch (err) {
             // console.log(err);
         }
@@ -68,7 +71,7 @@ function SuspiciousPage() {
         try {
             await axiosReq.patch(
                 `/posts/${reports.results[0].post_id}/`,
-                {reported: false, green_listed: true}
+                { reported: false, green_listed: true }
             );
             await axiosRes.delete(`/suspicious/${reports.results[0].id}/`);
             window.location.reload();
@@ -84,24 +87,26 @@ function SuspiciousPage() {
                 <Card>
                     <Card className={styles.Card}>
                         <table>
-                            <tr>
-                                <th>Reason</th>
-                                <td>
-                                    <ReasonReader
-                                        reasonNum={reports.results[0].reason}
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Explanation</th>
-                                <td>{reports.results[0].explanation}</td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th>Reason</th>
+                                    <td>
+                                        <ReasonReader
+                                            reasonNum={reports.results[0].reason}
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Explanation</th>
+                                    <td>{reports.results[0].explanation}</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </Card>
                     <Card className={styles.Card}>
                         <section className={styles.flexBox}>
                             <figure>
-                                {reports.results[0].post_image ? (
+                                {reports.results[0].post_image.value ? (
                                     <img
                                         src={reports.results[0].post_image}
                                         alt="from reported post"
@@ -137,8 +142,11 @@ function SuspiciousPage() {
             ) : (
 
                 <>
-                    <img src={logo} alt="logo" id="none-logo" />
-                    <p id="none-text">Yay, nothing is suspicious right now</p>
+                    <Card className={`${styles.Card} ${styles.center}`}>
+                        <img src={logo} alt="logo" className={styles.logo} />
+                        <hr></hr>
+                        <p>Yay, nothing is suspicious right now</p>
+                    </Card>
                 </>
 
             )}
