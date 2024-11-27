@@ -637,27 +637,55 @@ I'm now going to manually test all the features of my site. I've worked out an o
 
 ![manual tests chart](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732647519/full_manual_testing_ndd5e1.png)
 
+Signup and login tests
+
 ![signup and login tests](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732649388/mt_signup_login_zpwpcm.png)
+
+Username change test
 
 ![username change test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732649855/mt_uname_qgukyd.png)
 
+Password change test
+
 ![password change test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732650208/mt_password_jdnzwl.png)
+
+Profile picture change test
 
 ![profile picture change test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732651373/mt_pfp_l5c73a.png)
 
-![]()
+Text posts creation test
 
-![]()
+![text posts creation test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732655058/mt_create_posts_wqrehy.png)
 
-![]()
+Post text edit test
 
-![]()
+![post text edit test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732655900/mt_edit_post_text_atogca.png)
 
-![]()
+Post delete test
 
-![]()
+![post delete test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732656074/mt_delete_post_ctym8m.png)
 
-![]()
+Image post creation test
+
+![image post creation test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732656775/mt_image_post_wry2pw.png)
+
+Image change test
+
+![image change test](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732657274/mt_image_change_bmolep.png)
+
+Profile page inspection
+
+![profile page inspection](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732657485/mt_profile_page_qreofw.png)
+
+Comments tests
+
+![comments tests](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732659893/mt_comments_hncauy.jpg)
+
+Liking tests
+
+![liking tests](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732660400/mt_liking_wedysi.png)
+
+Following tests
 
 ![]()
 
@@ -666,6 +694,10 @@ I'm now going to manually test all the features of my site. I've worked out an o
 The profile picture successfully changed but without the preview having changed before clicking Save. I've fixed this by changing "image" to "profile_picture" at about line 142 of `ProfileEditForm.js`.
 
 I've also added cleanup to the `useEffect` method.
+
+### New Gitpod Workspace
+
+My Gitpod workspace became corrupted, probably through no fault of mine, and would not open, perpetually claiming to be in the process of opening. I made a new workspace from my GitHub repo and changed production Aperta API's Heroku config var CLIENT_ORIGIN_DEV to match development Aperta's server URL.
 
 ## Credit
 
