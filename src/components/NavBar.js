@@ -44,39 +44,96 @@ const NavBar = () => {
     };
 
     const loggedOutNav = <>
-        <NavLink exact to="/signup" className={styles.NavLink} activeClassName={styles.Active}>
-            <i className="fa-solid fa-user-plus"></i>Sign Up
+        <NavLink
+            exact to="/signup"
+            className={styles.NavLink} activeClassName={styles.Active}
+            aria-label="Go to signup page"
+        >
+            <i className="fa-solid fa-user-plus"
+                aria-hidden="true"
+            ></i>Sign Up
         </NavLink>
-        <NavLink exact to="/login" className={styles.NavLink} activeClassName={styles.Active}>
-            <i className="fa-solid fa-door-open"></i>Log In
+
+        <NavLink
+            exact to="/login"
+            className={styles.NavLink} activeClassName={styles.Active}
+            aria-label="Go to login page"
+        >
+            <i className="fa-solid fa-door-open"
+                aria-hidden="true"
+            ></i>Log In
         </NavLink>
     </>;
 
     const loggedInNav = <>
-        <NavLink exact to="/posts/create" className={styles.NavLink} activeClassName={styles.Active}>
-            <i className="fa-solid fa-palette"></i>Create Post
+        <NavLink
+            exact to="/posts/create"
+            className={styles.NavLink} activeClassName={styles.Active}
+            aria-label="Go to post creation page"
+        >
+            <i className="fa-solid fa-palette"
+                aria-hidden="true"
+            ></i>Create Post
         </NavLink>
-        <NavLink exact to="/liked" className={styles.NavLink} activeClassName={styles.Active}>
-            <i className="fa-solid fa-face-smile"></i>Liked
+
+        <NavLink
+            exact to="/liked"
+            className={styles.NavLink} activeClassName={styles.Active}
+            aria-label="Go to your liked posts page"
+        >
+            <i className="fa-solid fa-face-smile"
+                aria-hidden="true"
+            ></i>Liked
         </NavLink>
-        <NavLink exact to="/followed" className={styles.NavLink} activeClassName={styles.Active}>
-            <i className="fa-solid fa-users"></i>Followed
+
+        <NavLink
+            exact to="/followed"
+            className={styles.NavLink} activeClassName={styles.Active}
+            aria-label="Go to posts by people you follow"
+        >
+            <i className="fa-solid fa-users"
+                aria-hidden="true"
+            ></i>Followed
         </NavLink>
 
         {currentUser?.is_staff &&
-            <NavLink exact to="/suspicious" className={styles.NavLink} activeClassName={styles.Active}>
-                <i className="fa-solid fa-triangle-exclamation"></i>Suspicious
+            <NavLink
+                exact to="/suspicious"
+                className={styles.NavLink} activeClassName={styles.Active}
+                aria-label="Go to the content moderation page"
+            >
+                <i className="fa-solid fa-triangle-exclamation"
+                    aria-hidden="true"
+                ></i>Suspicious
             </NavLink>
         }
 
-        <NavLink exact to={`/profiles/${currentUser?.profile_id}`} className={styles.NavLink} activeClassName={styles.Active}>
-            <i className="fa-solid fa-circle-user"></i>Profile
-        </NavLink>
-        <NavLink to="/" onClick={handleLogOut} className={styles.NavLink}>
-            <i className="fa-solid fa-door-closed"></i>Log Out
+        <NavLink
+            exact to={`/profiles/${currentUser?.profile_id}`}
+            className={styles.NavLink} activeClassName={styles.Active}
+            aria-label="Go to your profile page"
+        >
+            <i className="fa-solid fa-circle-user"
+                aria-hidden="true"
+            ></i>Profile
         </NavLink>
 
-        <Avatar src={currentUser?.profile_picture} text={currentUser?.username} height={40} />
+        <NavLink
+            to="/"
+            onClick={handleLogOut}
+            className={styles.NavLink}
+            aria-label="Log out, redirects to public feed"
+        >
+            <i className="fa-solid fa-door-closed"
+                aria-hidden="true"
+            ></i>Log Out
+        </NavLink>
+
+        <Avatar
+            src={currentUser?.profile_picture}
+            text={currentUser?.username}
+            height={40}
+        />
     </>;
 
     return (
@@ -91,8 +148,14 @@ const NavBar = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto text-start">
 
-                        <NavLink exact to="/" className={styles.NavLink} activeClassName={styles.Active}>
-                            <i className="fa-solid fa-globe"></i>Public Feed
+                        <NavLink
+                            exact to="/"
+                            className={styles.NavLink} activeClassName={styles.Active}
+                            aria-label="Go to public feed"
+                        >
+                            <i className="fa-solid fa-globe"
+                                aria-hidden="true"
+                            ></i>Public Feed
                         </NavLink>
 
                         {currentUser ? loggedInNav : loggedOutNav}

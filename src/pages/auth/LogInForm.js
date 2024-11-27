@@ -99,13 +99,18 @@ function LogInForm() {
                         ))}
 
                         <Button
-                            className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
+                            className={`${btnStyles.Button}
+                                ${btnStyles.Wide}
+                                ${btnStyles.Bright}`
+                            }
                             type="submit"
                         >
                             Log In
                         </Button>
                         {errors.non_field_errors?.map((message, idx) => (
-                            <Alert key={idx} variant="warning" className="mt-3">
+                            <Alert key={idx}
+                                variant="warning" className="mt-3"
+                            >
                                 {message}
                             </Alert>
                         ))}
@@ -115,7 +120,11 @@ function LogInForm() {
                 </Container>
                 <Container className={`mt-3 ${appStyles.Content}`}>
 
-                    <Link className={styles.Link} to="/signup">
+                    <Link
+                        className={styles.Link}
+                        to="/signup"
+                        aria-label="Go to signup page"
+                    >
                         Don't have an account yet? <span>Sign Up</span>
                     </Link>
 

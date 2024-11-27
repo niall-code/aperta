@@ -718,6 +718,12 @@ I ditched Abort Controller here and replaced it with the `isMounted` approach to
 
 I also got rid of another error message by inserting `<tbody>` between `<table>` and `<tr>`.
 
+### Lighthouse
+
+I ran some Lighthouse tests. As you can see, the accessibility scores were good (90+) and the scores overall were reasonable (70+).
+
+![Lighthouse statistics](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732735302/lighthouse_r8ovpk.png)
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time. Likewise, the 'nothing found' and 'upload' graphics.
@@ -736,4 +742,6 @@ I also got rid of another error message by inserting `<tbody>` between `<table>`
 
 - My demo posts include a screenshot I took of the video game Cocoon, a photo I took at a zoo, and a photo of an eye I drew.
 
-- Responsiveness mockup at the top made with https://ui.dev/amiresponsive
+- Responsiveness mockup at the top here made with https://ui.dev/amiresponsive
+
+- Font Awesome icons are of course used in the navbar.
