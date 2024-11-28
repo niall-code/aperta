@@ -12,14 +12,35 @@ import Avatar from "../../components/Avatar";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 
 
+/**
+ * A form component for user to create a comment.
+*/
 function CommentCreateForm(props) {
-    const { commented_on_post, setPost, setComments, profilePicture, profile_id } = props;
+
+    // Destructured props
+    const {
+        commented_on_post,
+        setPost,
+        setComments,
+        profilePicture,
+        profile_id
+    } = props;
+
     const [comment_text, setContent] = useState("");
 
+    /**
+     * Method to update form data when user types in input field.
+    */
     const handleChange = (event) => {
         setContent(event.target.value);
     };
 
+    /**
+     * Method to submit form data.
+     * 
+     * Creates Comment instance in database.
+     * Updates state accordingly.
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -44,6 +65,7 @@ function CommentCreateForm(props) {
             // console.log(err);
         }
     };
+
     return (
         <Form className="mt-2" onSubmit={handleSubmit}>
             <Form.Group>
@@ -73,4 +95,6 @@ function CommentCreateForm(props) {
         </Form>
     );
 }
+
+
 export default CommentCreateForm;

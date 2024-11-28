@@ -23,6 +23,9 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/PostCreateEditForm.module.css";
 
 
+/**
+ * A form component for user to report a post.
+*/
 function ReportCreateForm() {
 
     useRedirect("loggedOut");
@@ -45,6 +48,12 @@ function ReportCreateForm() {
     useEffect(() => {
         const abortController = new AbortController();
         const signal = abortController.signal;
+
+        /**
+         * Fetches details of reported post.
+         * Uses API response to define variables
+         * and set reportData state with them.
+        */
         const handleMount = async () => {
             try {
                 const { data } = await axiosReq.get(`/posts/${id}`, { signal });
@@ -73,6 +82,9 @@ function ReportCreateForm() {
         };
     }, [id]);
 
+    /**
+     * Updates reportData state when user provides input.
+    */
     const handleChange = (event) => {
 
         if (event.target.name === 'reason') {
@@ -97,6 +109,12 @@ function ReportCreateForm() {
 
     };
 
+    /**
+     * Method to send reportData.
+     * 
+     * Creates a Report instance in database and updates relevant
+     * Post instance's 'reported' property to true.
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
 

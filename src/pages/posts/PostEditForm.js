@@ -22,6 +22,9 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/PostCreateEditForm.module.css";
 
 
+/**
+ * A form component for user to edit an owned post.
+*/
 function PostEditForm() {
     const [errors, setErrors] = useState({});
     const [postData, setPostData] = useState({
@@ -36,6 +39,11 @@ function PostEditForm() {
     const { id } = useParams();
 
     useEffect(() => {
+        /**
+         * Gets details of the post to be edited.
+         * If user is not post owner, redirected to root page.
+         * Otherwise, post data is set in state.
+        */
         const handleMount = async () => {
             try {
                 const { data } = await axiosReq.get(`/posts/${id}/`);
@@ -48,12 +56,19 @@ function PostEditForm() {
         handleMount();
     }, [history, id]);
 
+    /**
+     * Updates postData state when user alters input field values.
+    */
     const handleChange = (event) => {
         setPostData({
             ...postData,
             [event.target.name]: event.target.value,
         });
     };
+
+    /**
+     * Dedicated method for updating postData state when image changes.
+    */
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
             URL.revokeObjectURL(image);
@@ -64,6 +79,11 @@ function PostEditForm() {
         }
     };
 
+    /**
+     * Method for submitting form data.
+     * 
+     * Updates instance of Post with matching ID in database.
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -73,6 +93,7 @@ function PostEditForm() {
             formData.append("image", imageInput.current.files[0]);
         }
 
+        // Revokes green list status, if applicable
         formData.append("green_listed", false);
 
         try {
@@ -86,6 +107,7 @@ function PostEditForm() {
         }
     };
 
+    // Textual fields for the post editing form
     const textFields = (
         <div className="text-center">
             <Form.Group>

@@ -27,6 +27,9 @@ import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
 
 
+/**
+ * Displays an individual post and any associated comments.
+*/
 function PostPage() {
     const { id } = useParams();
     const [post, setPost] = useState({ results: [] });
@@ -36,6 +39,12 @@ function PostPage() {
     const [comments, setComments] = useState({ results: [] });
 
     useEffect(() => {
+        /**
+         * Gets details of a Post instance
+         * and any related Comment instances.
+         * 
+         * Uses fetched data to set state.
+        */
         const handleMount = async () => {
             try {
                 const [{ data: post }, { data: comments }] = await Promise.all([

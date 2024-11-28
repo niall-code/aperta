@@ -1,3 +1,7 @@
+/**
+ * Helper for the SuspiciousPage component. Translates a fetched
+ * integer to a corresponding reason for reporting a post.
+*/
 function ReasonReader ({reasonNum}) {
 
     let reasonText;

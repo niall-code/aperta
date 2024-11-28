@@ -11,14 +11,26 @@ import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 
 
+/**
+ * A form component for user to edit an owned comment.
+*/
 function CommentEditForm(props) {
     const { id, comment_text, setShowEditForm, setComments } = props;
     const [formContent, setFormContent] = useState(comment_text);
 
+    /**
+     * Method to update form data when user types in input field.
+    */
     const handleChange = (event) => {
         setFormContent(event.target.value);
     };
 
+    /**
+     * Method to submit form data.
+     * 
+     * Updates Comment instance with matching ID in database.
+     * Updates state accordingly. Sets showEditForm to false.
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -54,6 +66,7 @@ function CommentEditForm(props) {
                     rows={2}
                 />
             </Form.Group>
+
             <div className="text-right">
                 <button
                     className={styles.Button}

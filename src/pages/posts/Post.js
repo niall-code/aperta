@@ -19,7 +19,16 @@ import { MoreDropdown } from "../../components/MoreDropdown";
 import styles from "../../styles/Post.module.css";
 
 
+/**
+ * Used by PostsPage and PostPage component-based pages,
+ * corresponding to API's PostList and PostDetail views.
+ * 
+ * Includes methods to edit and delete the post and to
+ * create and destroy likes.
+*/
 const Post = (props) => {
+
+    // Destructured props
     const {
         id,
         owner,
@@ -36,15 +45,24 @@ const Post = (props) => {
         postPage,
         setPosts,
     } = props;
+
     const currentUser = useCurrentUser();
+
+    // True if current user owns the post
     const is_owner = currentUser?.username === owner;
 
     const history = useHistory();
 
+    /**
+     * Updates the Post instance with matching ID in database.
+    */
     const handleEdit = () => {
         history.push(`/posts/${id}/edit`);
     };
 
+    /**
+     * Deletes the Post instance with matching ID from database.
+    */
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/posts/${id}/`);
@@ -54,6 +72,10 @@ const Post = (props) => {
         }
     };
 
+    /**
+     * Seeks confirmation of user intention to delete post.
+     * If confirmed, calls handleDelete.
+    */
     const confirmDelete = () => {
         let answer = window.confirm("Are you sure you want to delete this post?");
         if (answer) {
@@ -61,6 +83,12 @@ const Post = (props) => {
         }
     };
 
+    /**
+     * Creates a Like instance in database,
+     * associated with a Post instance.
+     * 
+     * Updates state accordingly.
+    */
     const handleLike = async () => {
         try {
             const { data } = await axiosRes.post("/likes/", { liked_post: id });
@@ -77,6 +105,10 @@ const Post = (props) => {
         }
     };
 
+    /**
+     * Removes a specific Like instance from database.
+     * Updates state accordingly.
+    */
     const handleUnlike = async () => {
         try {
             await axiosRes.delete(`/likes/${like_id}/`);
@@ -97,45 +129,62 @@ const Post = (props) => {
         <Card className={styles.Post}>
             <Card.Body>
                 <Media className="align-items-center justify-content-between">
+
                     <Link to={`/profiles/${profile_id}`}>
                         <Avatar src={profile_picture} height={55} />
                         {owner}
                     </Link>
+
                     <div className="d-flex align-items-center">
                         <span>{changed_at}</span>
+
                         {is_owner && postPage && (
                             <MoreDropdown
                                 handleEdit={handleEdit}
                                 handleDelete={confirmDelete}
                             />
                         )}
+
                     </div>
                 </Media>
             </Card.Body>
+
             <Link to={`/posts/${id}`}>
                 {image && <Card.Img src={image} alt={title} />}
             </Link>
+
             <Card.Body>
+
                 <Link to={`/posts/${id}`} className={styles.Link}>
-                    {title && <Card.Title className="text-center">{title}</Card.Title>}
+                    {title && <Card.Title className="text-center">
+                        {title}</Card.Title>
+                    }
                 </Link>
+
                 {post_text && <Card.Text>{post_text}</Card.Text>}
+
                 <div className={styles.PostBar}>
+
                     {is_owner ? (
                         <OverlayTrigger
                             placement="top"
-                            overlay={<Tooltip>You can't like your own post!</Tooltip>}
+                            overlay={<Tooltip>
+                                You can't like your own post!</Tooltip>
+                            }
                         >
                             <i className="far fa-heart" />
                         </OverlayTrigger>
+
                     ) : like_id ? (
                         <span onClick={handleUnlike}>
                             <i className={`fas fa-heart ${styles.Heart}`} />
                         </span>
+
                     ) : currentUser ? (
                         <span onClick={handleLike}>
                             <i className={`far fa-heart ${styles.HeartOutline}`} />
                         </span>
+
                     ) : (
                         <OverlayTrigger
                             placement="top"
@@ -144,9 +193,11 @@ const Post = (props) => {
                             <i className="far fa-heart" />
                         </OverlayTrigger>
                     )}
+
                     {likes_count}
                     <i className="far fa-comments" />
                     {comments_count}
+
                 </div>
 
                 <div>

@@ -12,11 +12,18 @@ const SetProfileDataContext = createContext();
 
 export const useProfileData = () => useContext(ProfileDataContext);
 export const useSetProfileData = () => useContext(SetProfileDataContext);
+
+/**
+ * Provides profileData state and setProfileData method to descendants.
+*/
 export const ProfileDataProvider = ({ children }) => {
     const [profileData, setProfileData] = useState({
         pageProfile: { results: [] },
     });
 
+    /**
+     * Creates an instance of Follow in the database.
+    */
     const handleFollow = async (clickedProfile) => {
         try {
             const { data } = await axiosRes.post("/followed/", {
@@ -35,6 +42,9 @@ export const ProfileDataProvider = ({ children }) => {
         }
     };
 
+    /**
+     * Removes an instance of Follow from the database.
+    */
     const handleUnfollow = async (clickedProfile) => {
         try {
             await axiosRes.delete(`/followed/${clickedProfile.follow_id}/`);

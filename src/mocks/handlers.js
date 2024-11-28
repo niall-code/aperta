@@ -4,6 +4,9 @@ import { rest } from "msw";
 const baseURL = "https://aperta-api-e412b7c2a211.herokuapp.com/";
 
 
+/**
+ * Provides mock API response data for Jest testing.
+*/
 export const handlers = [
 
     rest.get(`${baseURL}dj-rest-auth/user/`, (req, res, ctx) => {

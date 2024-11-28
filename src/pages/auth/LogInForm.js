@@ -24,6 +24,9 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/SignUpLogInForm.module.css";
 
 
+/**
+ * A form component for users to log in.
+*/
 function LogInForm() {
     const setCurrentUser = useSetCurrentUser();
     useRedirect("loggedIn");
@@ -36,6 +39,10 @@ function LogInForm() {
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
+    /**
+     * Method to submit the login form. Sets currentUser state
+     * and saves a refreshable JWT token that can extend login period.
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -48,6 +55,9 @@ function LogInForm() {
         }
     };
 
+    /**
+     * Method to update login data when user types in input fields.
+    */
     const handleChange = (event) => {
         setLogInData({
             ...logInData,

@@ -20,6 +20,9 @@ import logo from "../../assets/logo.png";
 import styles from "../../styles/SuspiciousPage.module.css";
 
 
+/**
+ * Returns a content moderation page.
+*/
 function SuspiciousPage() {
 
     useRedirect("loggedOut");
@@ -38,7 +41,7 @@ function SuspiciousPage() {
         let isMounted = true;
 
         /**
-         * Fetches Report instances
+         * Fetches Report instances. Sets state.
         */
         const fetchReports = async () => {
             try {
@@ -57,6 +60,9 @@ function SuspiciousPage() {
         };
     }, []);
 
+    /**
+     * Delete a Post instance and a Report instance from database.
+    */
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/posts/${reports.results[0].post_id}/`);
@@ -67,6 +73,12 @@ function SuspiciousPage() {
         }
     };
 
+    /**
+     * Updates a Post instance's 'green_listed' property to true
+     * and its 'reported' property to false in database.
+     * 
+     * Deletes a Report instance from database.
+    */
     const handleApprove = async () => {
         try {
             await axiosReq.patch(
@@ -85,15 +97,18 @@ function SuspiciousPage() {
             {reports.results.length ? (
 
                 <Card>
+
                     <Card className={styles.Card}>
                         <table>
                             <tbody>
                                 <tr>
                                     <th>Reason</th>
                                     <td>
+
                                         <ReasonReader
                                             reasonNum={reports.results[0].reason}
                                         />
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -103,9 +118,11 @@ function SuspiciousPage() {
                             </tbody>
                         </table>
                     </Card>
+
                     <Card className={styles.Card}>
                         <section className={styles.flexBox}>
                             <figure>
+
                                 {reports.results[0].post_image.value ? (
                                     <img
                                         src={reports.results[0].post_image}
@@ -119,6 +136,7 @@ function SuspiciousPage() {
                                         className={styles.reportedPostImage}
                                     />
                                 )}
+
                             </figure>
 
                             <article className={styles.reportedPostTextFields}>
@@ -128,10 +146,12 @@ function SuspiciousPage() {
                             </article>
                         </section>
                     </Card>
+
                     <Card className={`${styles.Card} ${styles.flexBox}`}>
                         <Button variant="success" onClick={handleApprove}>Approve</Button>
                         <Button variant="danger" onClick={handleDelete}>Delete</Button>
                     </Card>
+
                     <Card className={`${styles.Card} ${styles.susCount}`}>
                         <p>
                             <b>{reports.results.length}</b> suspicious posts to review

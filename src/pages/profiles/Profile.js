@@ -19,6 +19,12 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/Profile.module.css";
 
 
+/**
+ * Profile component, used by ProfilePage component.
+ * 
+ * Includes a profile owner's avatar, username, and follow/unfollow
+ * button, conditionally.
+*/
 const Profile = (props) => {
     const { profile, mobile, imageSize = 55 } = props;
     const { id, followers_id, profile_picture, owner } = profile;

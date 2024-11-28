@@ -6,6 +6,12 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 
+/**
+ * Checks authentication status by trying to refresh JWT token.
+ * 
+ * Can be used to redirect an unauthenticated user away from
+ * restricted pages.
+*/
 export const useRedirect = (userAuthStatus) => {
     const history = useHistory();
     useEffect(() => {

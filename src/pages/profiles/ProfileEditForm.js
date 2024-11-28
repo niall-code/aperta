@@ -23,6 +23,9 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 
+/**
+ * A form component for a user to change their profile picture.
+*/
 const ProfileEditForm = () => {
     const currentUser = useCurrentUser();
     const setCurrentUser = useSetCurrentUser();
@@ -39,6 +42,9 @@ const ProfileEditForm = () => {
 
         let isMounted = true;
 
+        /**
+         * Fetches the initial profile picture.
+        */
         const handleMount = async () => {
             if (currentUser?.profile_id?.toString() === id) {
                 try {
@@ -73,6 +79,12 @@ const ProfileEditForm = () => {
 
     }, [currentUser, history, id]);
 
+    /**
+     * Method to submit form data.
+     * 
+     * Updates Profile instance in database.
+     * Sets currentUser state accordingly.
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -92,6 +104,8 @@ const ProfileEditForm = () => {
         }
     };
 
+    // Buttons for the form
+
     const textFields = (
         <>
             <Button
@@ -100,7 +114,10 @@ const ProfileEditForm = () => {
             >
                 Cancel
             </Button>
-            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+            <Button
+                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                type="submit"
+            >
                 Save
             </Button>
         </>
@@ -112,6 +129,7 @@ const ProfileEditForm = () => {
                 <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
                     <Container className={appStyles.Content}>
                         <Form.Group>
+
                             {profile_picture && (
                                 <figure>
                                     <Image src={profile_picture} fluid />
@@ -122,6 +140,7 @@ const ProfileEditForm = () => {
                                     {message}
                                 </Alert>
                             ))}
+
                             <div>
                                 <Form.Label
                                     className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
@@ -145,7 +164,9 @@ const ProfileEditForm = () => {
                                 }}
                             />
                         </Form.Group>
+
                         <div className="d-md-none">{textFields}</div>
+
                     </Container>
                 </Col>
                 <Col md={5} lg={6} className="d-none d-md-block p-0 p-md-2 text-center">

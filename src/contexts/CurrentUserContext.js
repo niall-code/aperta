@@ -16,10 +16,19 @@ export const SetCurrentUserContext = createContext();
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
+
+/**
+ * Provides currentUser state and setCurrentUser method to descendants.
+ * 
+ * Imported and utilised in index.js, wrapping the App component.
+*/
 export const CurrentUserProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const history = useHistory();
 
+    /**
+     * Gets user details and sets currentUser state from them.
+    */
     const handleMount = async () => {
         try {
             const { data } = await axiosRes.get("dj-rest-auth/user/");
@@ -29,10 +38,17 @@ export const CurrentUserProvider = ({ children }) => {
         }
     };
 
+    /**
+     * Calls handleMount when site loads.
+    */
     useEffect(() => {
         handleMount();
     }, []);
 
+    /**
+     * When API contacted, attempt to refresh JWT token.
+     * If tokens have expired, log out the user.
+    */
     useMemo(() => {
 
         axiosReq.interceptors.request.use(

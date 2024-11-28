@@ -9,6 +9,9 @@ import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/MoreDropdown.module.css";
 
 
+/**
+ * A three dots icon that opens a dropdown menu when clicked.
+*/
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
     <i
         className="fas fa-ellipsis-v"
@@ -19,6 +22,12 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
         }}
     />
 ));
+
+
+/**
+ * Dropdown menu for posts and comments,
+ * with edit and delete options.
+*/
 export const MoreDropdown = ({ handleEdit, handleDelete }) => {
     return (
         <Dropdown className="ml-auto" drop="left">
@@ -46,6 +55,10 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
     );
 };
 
+/**
+ * Dropdown menu for profile, with options for changing
+ * username, password, and profile picture.
+*/
 export const ProfileEditDropdown = ({ id }) => {
     const history = useHistory();
     return (
@@ -56,7 +69,7 @@ export const ProfileEditDropdown = ({ id }) => {
                     onClick={() => history.push(`/profiles/${id}/edit`)}
                     aria-label="edit-profile"
                 >
-                    <i className="fas fa-edit" /> edit profile
+                    <i className="fas fa-edit" /> change profile picture
                 </Dropdown.Item>
                 <Dropdown.Item
                     onClick={() => history.push(`/profiles/${id}/edit/username`)}

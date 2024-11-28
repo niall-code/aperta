@@ -22,6 +22,9 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 
+/**
+ * Form component for user to alter username.
+*/
 const UsernameForm = () => {
     const [username, setUsername] = useState("");
     const [errors, setErrors] = useState({});
@@ -29,6 +32,7 @@ const UsernameForm = () => {
     const { id } = useParams();
     const currentUser = useCurrentUser();
     const setCurrentUser = useSetCurrentUser();
+
     useEffect(() => {
         if (currentUser?.profile_id?.toString() === id) {
             setUsername(currentUser.username);
@@ -36,6 +40,13 @@ const UsernameForm = () => {
             history.push("/");
         }
     }, [currentUser, history, id]);
+
+    /**
+     * Method to submit form data.
+     * 
+     * Updates User instance in database.
+     * Sets currentUser state accordingly.
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -52,6 +63,7 @@ const UsernameForm = () => {
             setErrors(err.response?.data);
         }
     };
+
     return (
         <Row>
             <Col className="py-2 mx-auto text-center" md={6}>
@@ -71,6 +83,7 @@ const UsernameForm = () => {
                                 {message}
                             </Alert>
                         ))}
+
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.Blue}`}
                             onClick={() => history.goBack()}
@@ -89,4 +102,6 @@ const UsernameForm = () => {
         </Row>
     );
 };
+
+
 export default UsernameForm;

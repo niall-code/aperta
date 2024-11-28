@@ -22,7 +22,12 @@ import { MoreDropdown } from "../../components/MoreDropdown";
 import styles from "../../styles/Comment.module.css";
 
 
+/**
+ * Comment component. Used in PostPage component's return.
+*/
 const Comment = (props) => {
+
+    // Destructured props
     const {
         profile_id,
         profile_picture,
@@ -33,9 +38,18 @@ const Comment = (props) => {
         setPost,
         setComments,
     } = props;
+
+    // Comment editing form hidden by default
     const [showEditForm, setShowEditForm] = useState(false);
+
     const currentUser = useCurrentUser();
+
+    // True if comment owner is current user
     const is_owner = currentUser?.username === owner;
+
+    /**
+     * Deletes a comment by ID and updates state accordingly.
+    */
     const handleDelete = async () => {
         try {
             await axiosRes.delete(`/comments/${id}/`);
@@ -53,16 +67,25 @@ const Comment = (props) => {
             }));
         } catch (err) { }
     };
+
     return (
         <>
             <hr />
             <Media>
+
+                {/* Link to commenter's profile */}
                 <Link to={`/profiles/${profile_id}`}>
+
+                    {/* Commenter's avatar */}
                     <Avatar src={profile_picture} />
+
                 </Link>
+
                 <Media.Body className="align-self-center ml-2">
                     <span className={styles.Owner}>{owner}</span>
                     <span className={styles.Date}>{changed_at}</span>
+
+                    {/* Display comment_text OR CommentEditForm */}
                     {showEditForm ? (
                         <CommentEditForm
                             id={id}
@@ -75,15 +98,21 @@ const Comment = (props) => {
                     ) : (
                         <p>{comment_text}</p>
                     )}
+
                 </Media.Body>
+
+                {/* Comment owner can access editing and deleting */}
                 {is_owner && !showEditForm && (
                     <MoreDropdown
                         handleEdit={() => setShowEditForm(true)}
                         handleDelete={handleDelete}
                     />
                 )}
+
             </Media>
         </>
     );
 };
+
+
 export default Comment;

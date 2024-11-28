@@ -37,6 +37,9 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/ProfilePage.module.css";
 
 
+/**
+ * Returns a site user's profile page.
+*/
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
     const [profilePosts, setProfilePosts] = useState({ results: [] });
@@ -48,6 +51,12 @@ function ProfilePage() {
     const is_owner = currentUser?.username === profile?.owner;
 
     useEffect(() => {
+        /**
+         * Fetches details of the Profile instance
+         * and associated Post instances.
+         * 
+         * Sets profileData in state.
+        */
         const fetchData = async () => {
             try {
                 const [{ data: pageProfile }, { data: profilePosts }] =
@@ -68,6 +77,7 @@ function ProfilePage() {
         fetchData();
     }, [id, setProfileData]);
 
+    // Profile information at top of screen
     const mainProfile = (
         <>
             <Row noGutters className="px-3 text-center">
@@ -121,6 +131,7 @@ function ProfilePage() {
         </>
     );
 
+    // Below profile information, any posts by that user
     const mainProfilePosts = (
         <>
             <hr />

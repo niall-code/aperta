@@ -30,6 +30,9 @@ import styles from "../../styles/PostsPage.module.css";
 import appStyles from "../../App.module.css";
 
 
+/**
+ * Provides a scrolling feed of Post instances.
+*/
 function PostsPage({ message, filter = "" }) {
 
     const [posts, setPosts] = useState({ results: [] });
@@ -39,6 +42,11 @@ function PostsPage({ message, filter = "" }) {
     const currentUser = useCurrentUser();
 
     useEffect(() => {
+        /**
+         * Fetches Post instances from the database. Sets state.
+         * 
+         * Can accept a filter or search query.
+        */
         const fetchPosts = async () => {
             try {
                 const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);

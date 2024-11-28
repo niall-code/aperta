@@ -724,6 +724,24 @@ I ran some Lighthouse tests. As you can see, the accessibility scores were good 
 
 ![Lighthouse statistics](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732735302/lighthouse_r8ovpk.png)
 
+## Main Technologies
+
+**Languages, frameworks and libraries**
+
+- HTML
+- CSS
+- JavaScript/JSX
+- React
+- React-Bootstrap
+- Python
+- Django REST
+
+**Hosting**
+
+- Heroku
+- Cloudinary
+- Neon (PostgreSQL database)
+
 ## Credit
 
 - My project has been significantly based on my previous codealong work from Code Institute's Moments walkthrough project, but with additional functionality (including a new model), a few stylistic differences, and other miscellaneous adjustments. More of my CSS than originally intended had to be lifted from Moments, to save time. Likewise, the 'nothing found' and 'upload' graphics.

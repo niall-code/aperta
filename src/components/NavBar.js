@@ -29,10 +29,18 @@ import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 
 
+/**
+ * Navigation bar component. Available links vary by user's
+ * authentication and staff member statuses.
+*/
 const NavBar = () => {
     const currentUser = useCurrentUser();
     const setCurrentUser = useSetCurrentUser();
 
+    /**
+     * Method to handle logout. Sets currentUser to null
+     * and removes JWT token.
+    */
     const handleLogOut = async () => {
         try {
             await axios.post("dj-rest-auth/logout/");
@@ -43,6 +51,9 @@ const NavBar = () => {
         }
     };
 
+    /**
+     * Navigation links for unauthenticated site visitors.
+    */
     const loggedOutNav = <>
         <NavLink
             exact to="/signup"
@@ -65,6 +76,9 @@ const NavBar = () => {
         </NavLink>
     </>;
 
+    /**
+     * Navigation links for authenticated users.
+    */
     const loggedInNav = <>
         <NavLink
             exact to="/posts/create"
@@ -96,6 +110,7 @@ const NavBar = () => {
             ></i>Followed
         </NavLink>
 
+        {/* Staff-only navigation link to content moderation page. */}
         {currentUser?.is_staff &&
             <NavLink
                 exact to="/suspicious"
@@ -118,6 +133,7 @@ const NavBar = () => {
             ></i>Profile
         </NavLink>
 
+        {/* Calls handleLogOut method when clicked. */}
         <NavLink
             to="/"
             onClick={handleLogOut}
@@ -129,6 +145,7 @@ const NavBar = () => {
             ></i>Log Out
         </NavLink>
 
+        {/* Imported Avatar component displays avatar and username. */}
         <Avatar
             src={currentUser?.profile_picture}
             text={currentUser?.username}

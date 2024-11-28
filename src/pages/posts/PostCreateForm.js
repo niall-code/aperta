@@ -29,6 +29,9 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/PostCreateEditForm.module.css";
 
 
+/**
+ * A form component for user to create a post.
+*/
 function PostCreateForm() {
     useRedirect("loggedOut");
     const [errors, setErrors] = useState({});
@@ -42,12 +45,20 @@ function PostCreateForm() {
     const imageInput = useRef(null);
     const history = useHistory();
 
+    /**
+     * Method to update form's data when input fields' contents changed.
+    */
     const handleChange = (event) => {
         setPostData({
             ...postData,
             [event.target.name]: event.target.value,
         });
     };
+
+    /**
+     * Dedicated method to update form's data
+     * when changes to the input for an image.
+    */
     const handleChangeImage = (event) => {
         if (event.target.files.length) {
             URL.revokeObjectURL(image);
@@ -58,6 +69,11 @@ function PostCreateForm() {
         }
     };
 
+    /**
+     * Method to submit form data.
+     * 
+     * Creates an instance of Post in database.
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -77,6 +93,7 @@ function PostCreateForm() {
         }
     };
 
+    // Textual input fields for post creation form
     const textFields = (
         <div className="text-center">
             <Form.Group>

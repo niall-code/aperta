@@ -22,6 +22,9 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/SignUpLogInForm.module.css";
 
 
+/**
+ * A form component for unregistered users to sign up.
+*/
 const SignUpForm = () => {
     useRedirect("loggedIn");
     const [signUpData, setSignUpData] = useState({
@@ -33,6 +36,9 @@ const SignUpForm = () => {
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
+    /**
+     * Method to update signup data when user types in input fields.
+    */
     const handleChange = (event) => {
         setSignUpData({
             ...signUpData,
@@ -40,6 +46,11 @@ const SignUpForm = () => {
         });
     };
 
+    /**
+     * Method to submit the signup form.
+     * 
+     * Creates an instance of User in the databse.
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {

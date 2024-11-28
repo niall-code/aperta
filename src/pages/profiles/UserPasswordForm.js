@@ -19,6 +19,9 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 
+/**
+ * Form component for user to change password.
+*/
 const UserPasswordForm = () => {
     const history = useHistory();
     const { id } = useParams();
@@ -29,18 +32,29 @@ const UserPasswordForm = () => {
     });
     const { new_password1, new_password2 } = userData;
     const [errors, setErrors] = useState({});
+
+    /**
+     * Updates userData state when input field value changed.
+    */
     const handleChange = (event) => {
         setUserData({
             ...userData,
             [event.target.name]: event.target.value,
         });
     };
+
     useEffect(() => {
         if (currentUser?.profile_id?.toString() !== id) {
             // redirect user if they are not the owner of this profile
             history.push("/");
         }
     }, [currentUser, history, id]);
+
+    /**
+     * Method to submit form data.
+     * 
+     * Updates User instance in database.
+    */
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
@@ -51,6 +65,7 @@ const UserPasswordForm = () => {
             setErrors(err.response?.data);
         }
     };
+
     return (
         <Row>
             <Col className="py-2 mx-auto text-center" md={6}>
@@ -71,6 +86,7 @@ const UserPasswordForm = () => {
                                 {message}
                             </Alert>
                         ))}
+
                         <Form.Group>
                             <Form.Label>Confirm password</Form.Label>
                             <Form.Control
@@ -86,6 +102,7 @@ const UserPasswordForm = () => {
                                 {message}
                             </Alert>
                         ))}
+
                         <Button
                             className={`${btnStyles.Button} ${btnStyles.Blue}`}
                             onClick={() => history.goBack()}
@@ -104,4 +121,6 @@ const UserPasswordForm = () => {
         </Row>
     );
 };
+
+
 export default UserPasswordForm;
