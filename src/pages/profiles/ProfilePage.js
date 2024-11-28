@@ -51,6 +51,8 @@ function ProfilePage() {
     const is_owner = currentUser?.username === profile?.owner;
 
     useEffect(() => {
+        let isMounted = true; 
+
         /**
          * Fetches details of the Profile instance
          * and associated Post instances.
@@ -63,18 +65,26 @@ function ProfilePage() {
                     await Promise.all([
                         axiosReq.get(`/profiles/${id}/`),
                         axiosReq.get(`/posts/?owner__profile=${id}`),
-                    ]);
-                setProfileData((prevState) => ({
-                    ...prevState,
-                    pageProfile: { results: [pageProfile] },
-                }));
-                setProfilePosts(profilePosts);
-                setHasLoaded(true);
+                    ]
+                );
+
+                if (isMounted) {
+                    setProfileData((prevState) => ({
+                        ...prevState,
+                        pageProfile: { results: [pageProfile] },
+                    }));
+                    setProfilePosts(profilePosts);
+                    setHasLoaded(true);
+                }
             } catch (err) {
                 // console.log(err);
             }
         };
         fetchData();
+
+        return () => {
+            isMounted = false;
+        };    
     }, [id, setProfileData]);
 
     // Profile information at top of screen

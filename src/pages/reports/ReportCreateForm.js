@@ -46,8 +46,7 @@ function ReportCreateForm() {
     });
 
     useEffect(() => {
-        const abortController = new AbortController();
-        const signal = abortController.signal;
+        let isMounted = true;
 
         /**
          * Fetches details of reported post.
@@ -62,23 +61,27 @@ function ReportCreateForm() {
                 const post_text = `${data.post_text}`;
                 const post_image = `${data.image}`;
 
-                setReportData((reportData) => ({
-                    ...reportData,
-                    post_id: post_id,
-                    post_title: post_title,
-                    post_text: post_text,
-                    post_image: post_image,
-                    reason: 0,
-                    explanation: "",
-                }));
+                if (isMounted) {
+                    setReportData((reportData) => ({
+                        ...reportData,
+                        post_id: post_id,
+                        post_title: post_title,
+                        post_text: post_text,
+                        post_image: post_image,
+                        reason: 0,
+                        explanation: "",
+                    }));
+                }
 
             } catch (err) {
                 // console.log(err);
             }
         };
+
         handleMount();
+
         return () => {
-            abortController.abort();
+            isMounted = false;
         };
     }, [id]);
 

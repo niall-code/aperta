@@ -39,6 +39,8 @@ function PostPage() {
     const [comments, setComments] = useState({ results: [] });
 
     useEffect(() => {
+        let isMounted = true;
+
         /**
          * Gets details of a Post instance
          * and any related Comment instances.
@@ -51,13 +53,21 @@ function PostPage() {
                     axiosReq.get(`/posts/${id}/`),
                     axiosReq.get(`/comments/?commented_on_post=${id}`)
                 ]);
-                setPost({ results: [post] });
-                setComments(comments);
+
+                if (isMounted) {
+                    setPost({ results: [post] });
+                    setComments(comments);
+                }
             } catch (err) {
                 // console.log(err);
             }
         };
+
         handleMount();
+
+        return () => {
+            isMounted = false;
+        };    
     }, [id]);
 
     return (
