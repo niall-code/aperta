@@ -55,7 +55,7 @@ function ReportCreateForm() {
         */
         const handleMount = async () => {
             try {
-                const { data } = await axiosReq.get(`/posts/${id}`, { signal });
+                const { data } = await axiosReq.get(`/posts/${id}`);
                 const post_id = parseInt(`${data.id}`);
                 const post_title = `${data.title}`;
                 const post_text = `${data.post_text}`;

@@ -730,6 +730,14 @@ I validated the contents of `SuspiciousPage.module.css`, the stylesheet that was
 
 ![CSS validation](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732810290/valid_css_vrhatd.png)
 
+### Fix Heroku deployment obstacles
+
+I encountered an error when trying to do a final Heroku deployment. To try to remedy the issues, I have run
+
+`npm install --save-dev @babel/plugin-proposal-private-property-in-object`,
+
+and removed the redundant 'signal' variable in line 58 of `ReportCreateForm.js`.
+
 ## Main Technologies
 
 **Languages, frameworks and libraries**
