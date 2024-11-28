@@ -724,6 +724,12 @@ I ran some Lighthouse tests. As you can see, the accessibility scores were good 
 
 ![Lighthouse statistics](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732735302/lighthouse_r8ovpk.png)
 
+### CSS validator
+
+I validated the contents of `SuspiciousPage.module.css`, the stylesheet that was most self-written and least from Moments.
+
+![CSS validation](https://res.cloudinary.com/dlqwhxbeh/image/upload/v1732810290/valid_css_vrhatd.png)
+
 ## Main Technologies
 
 **Languages, frameworks and libraries**
